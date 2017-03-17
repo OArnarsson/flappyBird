@@ -2,7 +2,7 @@ function Pipe() {
   this.upper = random(height/2);
   this.lower = random(height/2);
   this.x = width;
-  this.width = width/7.55;
+  this.width = width/6;
   this.velocity = 2.5;
 
   // Display

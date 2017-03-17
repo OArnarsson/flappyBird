@@ -28,8 +28,8 @@ function draw() {
     }
   }
 
-  // Every 121 frames we create a new pipe
-  if (frameCount % 121 == 0) {
+  // Every 140 frames we create a new pipe
+  if (frameCount % 140 == 0) {
     pipes.push(new Pipe());
   }
 }

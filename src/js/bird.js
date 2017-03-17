@@ -1,6 +1,6 @@
 function Bird() {
   this.y = height/2;
-  this.x = 64;
+  this.x = 128;
   this.gravity = 0.35;
   this.jump = 9;
   this.velocity = 0;
@@ -8,7 +8,7 @@ function Bird() {
   // Display
   this.show = () => {
     fill(255);
-    ellipse(this.x, this.y, 32, 32);
+    ellipse(this.x, this.y, 48, 48);
   }
 
   // Happens on mouse click
