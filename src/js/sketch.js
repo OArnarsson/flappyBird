@@ -1,5 +1,10 @@
 let pipes = [];
+let floppyFont;
 const MAXSPEED = 13;
+
+function preload() {
+  floppyFont = loadFont("./fonts/04B_19__.ttf");
+}
 
 function setup() {
   createCanvas(400, 600);
@@ -11,7 +16,8 @@ function setup() {
 // Happens every frame
 function draw() {
   background(0);
-  textSize(30);
+  textSize(36);
+  textFont(floppyFont);
   text(Math.floor(this.distance), 20, 40);
 
   // Update bird location and velocity

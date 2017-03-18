@@ -18,7 +18,8 @@ function handleRequest(req, res) {
   let typeExt = {
     '.html': 'text/html',
     '.js':   'text/javascript',
-    '.css':  'text/css'
+    '.css':  'text/css',
+    '.tff':  'font/truetype'
   };
 
   let contentType = typeExt[ext] || 'text/plain';
