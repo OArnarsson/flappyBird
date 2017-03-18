@@ -11,6 +11,8 @@ function setup() {
 // Happens every frame
 function draw() {
   background(0);
+  textSize(30);
+  text(Math.floor(this.distance), 20, 40);
 
   // Update bird location and velocity
   this.bird.update();
