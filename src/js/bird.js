@@ -7,7 +7,7 @@ function Bird() {
 
   // Display
   this.show = () => {
-    fill(255);
+    fill(color(255,255,0));
     ellipse(this.x, this.y, 48, 48);
   }
 
@@ -33,7 +33,6 @@ function Bird() {
     if (this.y > height) {
       this.y = height;
       this.velocity = 0;
-      console.log(Math.floor(distance));
     } else if (this.y < 0) {
       this.y = 0;
       this.velocity = 0;

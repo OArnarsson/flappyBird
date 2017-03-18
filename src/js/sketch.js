@@ -2,23 +2,24 @@ let pipes = [];
 let floppyFont;
 const MAXSPEED = 13;
 
+// Load assets before starting game
 function preload() {
   floppyFont = loadFont("./fonts/04B_19__.ttf");
 }
 
+// Initialization
 function setup() {
   createCanvas(400, 600);
+  noStroke();
   bird = new Bird();
+  bird.rotateToDirection = true;
   pipes.push(new Pipe());
   distance = 0;
 }
 
 // Happens every frame
 function draw() {
-  background(0);
-  textSize(36);
-  textFont(floppyFont);
-  text(Math.floor(this.distance), 20, 40);
+  background(33);
 
   // Update bird location and velocity
   this.bird.update();
@@ -40,6 +41,12 @@ function draw() {
   if (frameCount % 140 == 0) {
     pipes.push(new Pipe());
   }
+
+  // Draws the score
+  textSize(36);
+  textFont(floppyFont);
+  fill(255);
+  text(Math.floor(this.distance), 20, 40);
 }
 
 // Flap the bird when mouse is pressed
