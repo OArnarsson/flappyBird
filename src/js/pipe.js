@@ -1,7 +1,7 @@
 function Pipe() {
   this.gap = random(98,135);
   this.upper = random(height/2);
-  this.lower = Math.abs(this.upper+this.gap);
+  this.lower = this.upper+this.gap;
   this.capHeight = 20;
   this.capWidth = 10;
   this.x = width;
@@ -12,15 +12,15 @@ function Pipe() {
 
   // Display
   this.show = () => {
+    // Big pipes
     fill(color(0, 255, 0));
-    // Top pipe
-    rect(this.x, 0, this.width, this.upper);
-    // Bottom pipe
-    rect(this.x, this.lower, this.width, height);
+    rect(this.x, 0, this.width, this.upper); // Top
+    rect(this.x, this.lower, this.width, height); // Bottom
 
-    fill(color(0, 220, 0));
-    rect(this.x-this.capWidth/2, this.upper-this.capHeight, this.width+this.capWidth, this.capHeight);
-    rect(this.x-this.capWidth/2, this.lower, this.width+this.capWidth, this.capHeight);
+    // Pipe hats
+    fill(color(0, 210, 0));
+    rect(this.x-this.capWidth/2, this.upper-this.capHeight, this.width+this.capWidth, this.capHeight); // Top
+    rect(this.x-this.capWidth/2, this.lower, this.width+this.capWidth, this.capHeight); // Bottom
 
   }
 

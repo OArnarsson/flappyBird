@@ -1,5 +1,6 @@
 let pipes = [];
 let floppyFont;
+let isPlaying = false;
 const MAXSPEED = 13;
 
 // Load assets before starting game
@@ -13,6 +14,7 @@ function setup() {
   noStroke();
   bird = new Bird();
   bird.rotateToDirection = true;
+  pipes = [];
   pipes.push(new Pipe());
   distance = 0;
 }
@@ -52,4 +54,10 @@ function draw() {
 // Flap the bird when mouse is pressed
 function mousePressed() {
   this.bird.flap();
+}
+
+function keyPressed() {
+  if (key == ' ') {
+    this.setup();
+  }
 }
