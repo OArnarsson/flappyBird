@@ -10,7 +10,9 @@ window.Game = (function() {
 	var Game = function(el) {
 		this.el = el;
 		this.player = new window.Player(this.el.find('.Player'), this);
-		//this.clouds = new window.Player(this.el.find('.Player'), this);
+		this.clouds = new window.Parallax(this.el.find('.Clouds'), this, 0.1, 'Cloud');
+        this.city = new window.Parallax(this.el.find('.City'), this, 0.1, 'City');
+        this.ground = new window.Parallax(this.el.find('.Ground'), this, 0.5, 'Ground');
 		this.isPlaying = false;
 
 		// Cache a bound onFrame since we need it each frame.
@@ -34,6 +36,9 @@ window.Game = (function() {
 
 		// Update game entities.
 		this.player.onFrame(delta);
+        this.clouds.update();
+		this.city.update();
+        this.ground.update();
 
 		// Request next frame.
 		window.requestAnimationFrame(this.onFrame);
