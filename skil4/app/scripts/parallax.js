@@ -32,7 +32,6 @@ window.Parallax = (function () {
         // Check if out of bounce
         this.pos.x += this.speed;
         //this.el.css('transform', 'translateX(' + this.pos.x + 'em)');
-
     }
 
     return Parallax;

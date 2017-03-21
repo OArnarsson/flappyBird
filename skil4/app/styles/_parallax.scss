@@ -1,7 +1,21 @@
 
 .Clouds {
   position: absolute;
-  height: 40px;
+  height: 100px;
   width: 250px;
+  top: 10em;
+  opacity: 0.6;
   background-color: #105cb6;
+}
+
+.City {
+
+}
+
+.Ground {
+  position: absolute;
+  bottom: 0;
+  height: 150px;
+  background-color: #737373;
+  width: 100%;
 }

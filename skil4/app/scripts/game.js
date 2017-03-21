@@ -2,6 +2,8 @@
 window.Game = (function() {
 	'use strict';
 
+
+
 	/**
 	 * Main game class.
 	 * @param {Element} el jQuery element containing the game.
@@ -16,10 +18,31 @@ window.Game = (function() {
 		this.isPlaying = false;
 		this.pipes;
 		this.score = 0;
+		this.width = 0;
+		this.height = 0;
+		this.setGameSize();
 
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
 	};
+
+    /**
+     * Some shared constants.
+     */
+    Game.prototype.setGameSize = function () {
+      var h = window.innerHeight;
+      var w = window.innerWidth;
+
+      if(h > 576){
+          h = 576;
+          w = 1024;
+      }
+        this.height = h;
+        this.width = w;
+      console.log(this.el);
+      this.el.height(h);
+      this.el.width(w);
+    }
 
 	/**
 	 * Runs every frame. Calculates a delta and allows each game
@@ -64,7 +87,7 @@ window.Game = (function() {
 	Game.prototype.reset = function() {
 		this.player.reset();
 		this.score = 0;
-		this.pipes = setInterval(() => {console.log('laying pipe')}, 1000);
+		this.pipes = setInterval(function () {console.log('laying pipe')}, 1000);
 	};
 
 	/**
@@ -86,11 +109,7 @@ window.Game = (function() {
 				});
 	};
 
-	/**
-	 * Some shared constants.
-	 */
-	Game.prototype.WORLD_WIDTH = 102.4;
-	Game.prototype.WORLD_HEIGHT = 57.6;
+
 
 	return Game;
 })();
