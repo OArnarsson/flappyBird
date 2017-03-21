@@ -13,9 +13,13 @@ window.Player = (function() {
 	var MAXSPEED = 0.85;
 	var volume = 1;
 	var flapSound = new Audio('../sounds/flap.wav');
+	var deadSound = new Audio('../sounds/gameOver.wav');
 	flapSound.volume = volume;
 	flapSound.preload = 'auto';
 	flapSound.load();
+	deadSound.volume = volume;
+	deadSound.preload = 'auto';
+	deadSound.load();
 
 	var Player = function(el, game) {
 		this.el = el;
@@ -32,6 +36,8 @@ window.Player = (function() {
 	Player.prototype.reset = function() {
 		this.pos.x = INITIAL_POSITION_X;
 		this.pos.y = INITIAL_POSITION_Y;
+		flapSound.volume = volume;
+		deadSound.volume = volume;
 		this.velocity = 0;
 	};
 
@@ -67,6 +73,7 @@ window.Player = (function() {
 			this.pos.x + WIDTH > this.game.WORLD_WIDTH ||
 			this.pos.y < 0 ||
 			this.pos.y + HEIGHT > this.game.WORLD_HEIGHT) {
+			deadSound.play();
 			return this.game.gameover();
 		}
 	};
