@@ -11,6 +11,11 @@ window.Player = (function() {
 	var INITIAL_POSITION_X = 30;
 	var INITIAL_POSITION_Y = 25;
 	var MAXSPEED = 0.85;
+	var volume = 1;
+	var flapSound = new Audio('../sounds/flap.wav');
+	flapSound.volume = volume;
+	flapSound.preload = 'auto';
+	flapSound.load();
 
 	var Player = function(el, game) {
 		this.el = el;
@@ -42,17 +47,20 @@ window.Player = (function() {
     }
 
 		if (Controls.didJump() == true) {
-			console.log(this.velocity);
-			console.log(this.power);
-			this.velocity -= this.power;
+			this.flap();
 		}
-
 
 		this.checkCollisionWithBounds();
 
 		// Update UI
 		this.el.css('transform', 'translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(' + this.velocity*20 + 'deg)');
 	};
+
+	Player.prototype.flap = function() {
+		console.log('flap');
+		this.velocity -= this.power;
+		flapSound.cloneNode().play();
+	}
 
 	Player.prototype.checkCollisionWithBounds = function() {
 		if (this.pos.x < 0 ||
