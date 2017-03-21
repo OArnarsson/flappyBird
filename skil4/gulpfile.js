@@ -3,7 +3,8 @@ var gulp = require('gulp'),
 
 const $ = require('gulp-load-plugins')();
 const reload = browserSync.reload;
-const styleFolder = 'app/styles/'
+const rootFolder = 'app/';
+const styleFolder = rootFolder + 'styles/';
 
 gulp.task('styles', () => {
   return gulp.src(styleFolder + 'main.scss')
@@ -21,8 +22,14 @@ gulp.task('styles', () => {
     .pipe(reload({stream: true}));
 });
 
+gulp.task('reload', () => {
+    browserSync.reload();
+});
+
 gulp.task('watcher', ['styles'], () => {
     gulp.watch(styleFolder + '*.scss', ['styles']);
+    gulp.watch(rootFolder + 'scripts/*.js', ['reload']);
+    gulp.watch(rootFolder + '*.html', ['reload']);
 });
 
 gulp.task('sync', ['styles'], () => {
