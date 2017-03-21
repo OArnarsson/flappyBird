@@ -10,7 +10,7 @@ window.Player = (function() {
 	var HEIGHT = 5;
 	var INITIAL_POSITION_X = 30;
 	var INITIAL_POSITION_Y = 25;
-	let MAXSPEED = 0.85;
+	var MAXSPEED = 0.85;
 
 	var Player = function(el, game) {
 		this.el = el;
@@ -51,7 +51,7 @@ window.Player = (function() {
 		this.checkCollisionWithBounds();
 
 		// Update UI
-		this.el.css('transform', 'translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
+		this.el.css('transform', 'translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(' + this.velocity*20 + 'deg)');
 	};
 
 	Player.prototype.checkCollisionWithBounds = function() {
