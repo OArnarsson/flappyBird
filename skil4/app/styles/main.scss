@@ -2,7 +2,7 @@
 // endbower
 
 body {
-    background: black;
+    background: green;
 }
 
 .browsehappy {
@@ -12,6 +12,7 @@ body {
     padding: 0.2em 0;
 }
 
+@import '_parallax';
 @import '_game-canvas';
 @import '_player';
 @import '_scoreboard';

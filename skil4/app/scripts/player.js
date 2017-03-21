@@ -11,6 +11,15 @@ window.Player = (function() {
 	var INITIAL_POSITION_X = 30;
 	var INITIAL_POSITION_Y = 25;
 	var MAXSPEED = 0.85;
+	var volume = 1;
+	var flapSound = new Audio('../sounds/flap.wav');
+	var deadSound = new Audio('../sounds/gameOver.wav');
+	flapSound.volume = volume;
+	flapSound.preload = 'auto';
+	flapSound.load();
+	deadSound.volume = volume;
+	deadSound.preload = 'auto';
+	deadSound.load();
 
 	var Player = function(el, game) {
 		this.el = el;
@@ -27,6 +36,8 @@ window.Player = (function() {
 	Player.prototype.reset = function() {
 		this.pos.x = INITIAL_POSITION_X;
 		this.pos.y = INITIAL_POSITION_Y;
+		flapSound.volume = volume;
+		deadSound.volume = volume;
 		this.velocity = 0;
 	};
 
@@ -42,11 +53,8 @@ window.Player = (function() {
     }
 
 		if (Controls.didJump() == true) {
-			console.log(this.velocity);
-			console.log(this.power);
-			this.velocity -= this.power;
+			this.flap();
 		}
-
 
 		this.checkCollisionWithBounds();
 
@@ -54,11 +62,18 @@ window.Player = (function() {
 		this.el.css('transform', 'translate(' + this.pos.x + 'em, ' + this.pos.y + 'em) rotate(' + this.velocity*20 + 'deg)');
 	};
 
+	Player.prototype.flap = function() {
+		console.log('flap');
+		this.velocity -= this.power;
+		flapSound.cloneNode().play();
+	}
+
 	Player.prototype.checkCollisionWithBounds = function() {
 		//if (this.pos.x < 0 ||
 		//	this.pos.x + WIDTH > this.game.WORLD_WIDTH ||
 		//	this.pos.y < 0 ||
 		//	this.pos.y + HEIGHT > this.game.WORLD_HEIGHT) {
+		//	deadSound.play();
 		//	return this.game.gameover();
 		//}
 	};
