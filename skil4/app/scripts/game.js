@@ -3,7 +3,6 @@ window.Game = (function() {
 	'use strict';
 
 
-
 	/**
 	 * Main game class.
 	 * @param {Element} el jQuery element containing the game.
@@ -19,8 +18,9 @@ window.Game = (function() {
 		this.clouds = new window.Parallax(this.el.find('.Clouds'), this, 0.5, 'Cloud');
         this.city = new window.Parallax(this.el.find('.City'), this, 0.1, 'City');
         this.ground = new window.Parallax(this.el.find('.Ground'), this, 3.1415, 'Ground');
+        this.topPipe = new window.Parallax(this.el.find('.TopPipe'), this, 10, 'TopPipe');
+        this.bottomPipe = new window.Parallax(this.el.find('.BottomPipe'), this, 10, 'BottomPipe');
 		this.isPlaying = false;
-		this.pipes;
 		this.score = 0;
 
 		// Cache a bound onFrame since we need it each frame.
@@ -65,6 +65,8 @@ window.Game = (function() {
         this.clouds.update();
 		this.city.update();
         this.ground.update();
+		this.topPipe.update();
+		this.bottomPipe.update();
 
 		// Request next frame.
 		window.requestAnimationFrame(this.onFrame);
@@ -88,7 +90,9 @@ window.Game = (function() {
 	Game.prototype.reset = function() {
 		this.player.reset();
 		this.score = 0;
-		this.pipes = setInterval(function () {console.log('laying pipe')}, 1000);
+		this.topPipe = new window.Parallax(this.el.find('.TopPipe'), this, 2, 'TopPipe');
+        this.bottomPipe = new window.Parallax(this.el.find('.BottomPipe'), this, 2, 'BottomPipe');
+		
 	};
 
 	/**
@@ -96,7 +100,6 @@ window.Game = (function() {
 	 */
 	Game.prototype.gameover = function() {
 		this.isPlaying = false;
-		clearInterval(this.pipes);
 
 		// Should be refactored into a Scoreboard class.
 		var that = this;

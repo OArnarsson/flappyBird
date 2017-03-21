@@ -26,3 +26,19 @@
   background-image: url("../images/ground.png");
   background-size: contain;
 }
+
+.TopPipe {
+  position: absolute;
+  background-image: url("../images/pipes.png");
+  background-size: contain;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.BottomPipe {
+  position: absolute;
+  background-image: url("../images/pipes.png");
+  background-size: contain;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
