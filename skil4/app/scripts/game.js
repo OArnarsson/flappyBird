@@ -11,16 +11,17 @@ window.Game = (function() {
 	 */
 	var Game = function(el) {
 		this.el = el;
+        this.width = 0;
+        this.height = 0;
+        this.setGameSize();
+        this.groundHeight = this.height*0.2;
 		this.player = new window.Player(this.el.find('.Player'), this);
-		this.clouds = new window.Parallax(this.el.find('.Clouds'), this, 0.1, 'Cloud');
+		this.clouds = new window.Parallax(this.el.find('.Clouds'), this, 0.5, 'Cloud');
         this.city = new window.Parallax(this.el.find('.City'), this, 0.1, 'City');
-        this.ground = new window.Parallax(this.el.find('.Ground'), this, 0.5, 'Ground');
+        this.ground = new window.Parallax(this.el.find('.Ground'), this, 3.1415, 'Ground');
 		this.isPlaying = false;
 		this.pipes;
 		this.score = 0;
-		this.width = 0;
-		this.height = 0;
-		this.setGameSize();
 
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
@@ -34,11 +35,11 @@ window.Game = (function() {
       var w = window.innerWidth;
 
       if(h > 576){
-          h = 576;
-          w = 1024;
+          w = 414;
+          h = 736;
       }
-        this.height = h;
         this.width = w;
+        this.height = h;
       console.log(this.el);
       this.el.height(h);
       this.el.width(w);

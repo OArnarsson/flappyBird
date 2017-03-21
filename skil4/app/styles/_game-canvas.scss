@@ -10,16 +10,10 @@
     // the whole game just by changing the font-size above
     // with javascript.
     position: absolute;
-    left: 50%;
-    top: 50%;
-    width: em(1024px);
-    height: em(576px);
-    margin-left: (em(-1024px) / 2);
-    margin-top: (em(-576px) / 2);
 
     // Don't draw outside this box.
     overflow: hidden;
 
     // Some graphics
-    background: lawngreen;
+    background: #7dd9d9;
 }

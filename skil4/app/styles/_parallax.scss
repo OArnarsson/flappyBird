@@ -1,21 +1,28 @@
 
 .Clouds {
   position: absolute;
-  height: 100px;
-  width: 250px;
   top: 10em;
   opacity: 0.6;
-  background-color: #105cb6;
+  background-image: url("../images/animated-cloud-image-0016.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+  right: 0
 }
 
 .City {
-
+  position: absolute;
+  bottom: 0;
+  opacity: 0.7;
+  background-image: url("../images/flat-design-City2-1024x576.jpg");
+  background-size: contain;
 }
 
 .Ground {
   position: absolute;
   bottom: 0;
-  height: 150px;
+  left: 0;
+  right: 0;
   background-color: #737373;
-  width: 100%;
+  background-image: url("../images/ground.png");
+  background-size: contain;
 }
