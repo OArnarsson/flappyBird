@@ -14,6 +14,8 @@ window.Game = (function() {
         this.city = new window.Parallax(this.el.find('.City'), this, 0.1, 'City');
         this.ground = new window.Parallax(this.el.find('.Ground'), this, 0.5, 'Ground');
 		this.isPlaying = false;
+		this.pipes;
+		this.score = 0;
 
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
@@ -61,6 +63,8 @@ window.Game = (function() {
 	 */
 	Game.prototype.reset = function() {
 		this.player.reset();
+		this.score = 0;
+		this.pipes = setInterval(() => {console.log('laying pipe')}, 1000);
 	};
 
 	/**
@@ -68,6 +72,7 @@ window.Game = (function() {
 	 */
 	Game.prototype.gameover = function() {
 		this.isPlaying = false;
+		clearInterval(this.pipes);
 
 		// Should be refactored into a Scoreboard class.
 		var that = this;
