@@ -9,6 +9,7 @@ window.Game = (function() {
 	 * @constructor
 	 */
 	var Game = function(el) {
+	    this.baseSpeed = 3.14159265359
 		this.el = el;
         this.width = 0;
         this.height = 0;
@@ -17,9 +18,9 @@ window.Game = (function() {
 		this.player = new window.Player(this.el.find('.Player'), this);
 		this.clouds = new window.Parallax(this.el.find('.Clouds'), this, 0.5, 'Cloud');
         this.city = new window.Parallax(this.el.find('.City'), this, 0.1, 'City');
-        this.ground = new window.Parallax(this.el.find('.Ground'), this, 3.1415, 'Ground');
-        this.topPipe = new window.Parallax(this.el.find('.TopPipe'), this, 10, 'TopPipe');
-        this.bottomPipe = new window.Parallax(this.el.find('.BottomPipe'), this, 10, 'BottomPipe');
+        this.ground = new window.Parallax(this.el.find('.Ground'), this, this.baseSpeed, 'Ground');
+        this.topPipe = new window.Parallax(this.el.find('.TopPipe'), this, this.baseSpeed, 'TopPipe');
+        this.bottomPipe = new window.Parallax(this.el.find('.BottomPipe'), this, this.baseSpeed, 'BottomPipe');
 		this.isPlaying = false;
 		this.score = 0;
 
@@ -90,8 +91,8 @@ window.Game = (function() {
 	Game.prototype.reset = function() {
 		this.player.reset();
 		this.score = 0;
-		this.topPipe = new window.Parallax(this.el.find('.TopPipe'), this, 2, 'TopPipe');
-        this.bottomPipe = new window.Parallax(this.el.find('.BottomPipe'), this, 2, 'BottomPipe');
+		this.topPipe = new window.Parallax(this.el.find('.TopPipe'), this, this.baseSpeed, 'TopPipe');
+        this.bottomPipe = new window.Parallax(this.el.find('.BottomPipe'), this, this.baseSpeed, 'BottomPipe');
 		
 	};
 

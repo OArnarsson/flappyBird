@@ -16,7 +16,7 @@ window.Parallax = (function () {
         this.width = 0;
         this.height = 0;
         this.reset();
-        pipeWidth = this.game.width / 6;
+        pipeWidth = this.game.width / 5;
         playField = this.game.height - this.game.groundHeight;
         // TODO: FIX HEIGHT MESS UP!
         gap = Math.floor((Math.random() * 35) + 100);
