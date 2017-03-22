@@ -74,11 +74,11 @@ window.Player = (function () {
     }
 
     Player.prototype.checkCollisionWithBounds = function () {
-        //if (this.el.position().top < 0 ||
-        //    this.el.position().top + this.el.height() > (this.game.height - this.game.groundHeight)) {
-        //    deadSound.play();
-        //    return this.game.gameover();
-        //}
+        if (this.el.position().top < 0 ||
+            this.el.position().top + this.el.height() > (this.game.height - this.game.groundHeight)) {
+            //deadSound.play();
+            //return this.game.gameover();
+        }
     };
 
     return Player;

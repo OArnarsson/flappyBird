@@ -14,10 +14,10 @@ window.Game = (function() {
         this.width = 0;
         this.height = 0;
         this.setGameSize();
-        this.groundHeight = this.height*0.2;
+        this.groundHeight = 80;
 		this.player = new window.Player(this.el.find('.Player'), this);
 		this.clouds = new window.Parallax(this.el.find('.Clouds'), this, 0.5, 'Cloud');
-        this.city = new window.Parallax(this.el.find('.City'), this, 0.1, 'City');
+        this.city = new window.Parallax(this.el.find('.City'), this, 0.15, 'City');
         this.ground = new window.Parallax(this.el.find('.Ground'), this, this.baseSpeed, 'Ground');
         this.topPipe = new window.Parallax(this.el.find('.TopPipe'), this, this.baseSpeed, 'TopPipe');
         this.bottomPipe = new window.Parallax(this.el.find('.BottomPipe'), this, this.baseSpeed, 'BottomPipe');

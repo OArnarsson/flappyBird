@@ -35,17 +35,17 @@ window.Parallax = (function () {
             case 'City':
                 this.pos.x = 0;
                 this.pos.y = 0;
-                this.width = this.game.width * 1.5;
-                this.height = this.game.groundHeight;
+                this.width = 825;
+                this.height = 400;
                 this.el.width(this.width);
-                this.el.height(this.game.groundHeight);
+                this.el.height(this.height);
                 this.el.css("bottom", this.game.groundHeight + 'px');
                 break;
             case 'Ground':
                 this.pos.x = 0;
                 this.pos.y = 0;
-                this.width = this.game.el.width()*2;
-                this.el.width(this.game.el.width()*2);
+                this.width = 750;
+                this.el.width(750);
                 this.height = this.game.groundHeight;
                 break;
             case 'TopPipe':
@@ -78,12 +78,12 @@ window.Parallax = (function () {
                 }
                 break;
             case 'Ground':
-                if (this.width/2 + this.pos.x < 0) {
+                if (this.width/3.4 + this.pos.x < 0) {
                     this.pos.x = 0;
                 }
                 break;
             case 'City':
-                if (this.width * 0.25 + this.pos.x < 0) {
+                if (this.width/3.4 + this.pos.x < 0) {
                     this.pos.x = 0;
                 }
                 break;
