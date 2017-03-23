@@ -80,45 +80,39 @@ window.Player = (function () {
             }
         }
 
-        if (this.game.topPipe.pos.x-this.game.topPipe.width > this.game.width * INITIAL_POSITION_X) {
+        if (this.game.topPipe.pos.x - this.game.topPipe.width > this.game.width * INITIAL_POSITION_X) {
             this.givingScore = true;
         }
     }
 
     Player.prototype.checkCollision = function () {
-        //if (this.game.topPipe.pos.x - (this.game.topPipe.width / 2) <= this.game.width * INITIAL_POSITION_X && this.game.topPipe.pos.x + (this.game.topPipe.width) > this.game.width * INITIAL_POSITION_X) {
-        //    if (this.pos.y + this.game.height * INITIAL_POSITION_Y <= this.game.topPipe.height || this.pos.y + this.game.height * INITIAL_POSITION_Y + 50 >= this.game.bottomPipe.el.position().top) {
-        //        deadSound.play();
-        //        return this.game.gameover();
-        //    }
-        //}
-        //if (this.el.position().top < 0 ||
-        //    this.el.position().top + this.el.height() > (this.game.height - this.game.groundHeight)) {
-        //    deadSound.play();
-        //    return this.game.gameover();
-        //}
-        var circle={x:this.el.position().left+26, y:this.el.position().top+27,r:22};
-        var rectTop={x:this.game.topPipe.el.position().left,y:this.game.topPipe.el.position().top,w:this.game.topPipe.el.width(),h:this.game.topPipe.el.height()};
-        var rectBottom={x:this.game.bottomPipe.el.position().left,y:this.game.bottomPipe.el.position().top,w:this.game.bottomPipe.el.width(),h:this.game.bottomPipe.el.height()};
-        if(this.checkCollision2(circle, rectTop) || this.checkCollision2(circle, rectBottom)){
-            deadSound.volume = this.game.volume/2;
+        var circle = { x: this.el.position().left + 25, y: this.el.position().top + 25, r: 22 };
+        var rectTop = { x: this.game.topPipe.el.position().left, y: this.game.topPipe.el.position().top, w: this.game.topPipe.el.width(), h: this.game.topPipe.el.height() };
+        var rectBottom = { x: this.game.bottomPipe.el.position().left, y: this.game.bottomPipe.el.position().top, w: this.game.bottomPipe.el.width(), h: this.game.bottomPipe.el.height() };
+        if (this.pipeCollision(circle, rectTop) || this.pipeCollision(circle, rectBottom)) {
+            deadSound.volume = this.game.volume / 2;
+            deadSound.play();
+            return this.game.gameover();
+        }
+        if (this.el.position().top + 5 <= 0 ||
+            this.el.position().top + this.el.height() > (this.game.height - this.game.groundHeight)) {
             deadSound.play();
             return this.game.gameover();
         }
     }
-    Player.prototype.checkCollision2 = function (circle,rect) {
-            var distX = Math.abs(circle.x - rect.x-rect.w/2);
-            var distY = Math.abs(circle.y - rect.y-rect.h/2);
+    Player.prototype.pipeCollision = function (circle, rect) {
+        var distX = Math.abs(circle.x - rect.x - rect.w / 2);
+        var distY = Math.abs(circle.y - rect.y - rect.h / 2);
 
-            if (distX > (rect.w/2 + circle.r)) { return false; }
-            if (distY > (rect.h/2 + circle.r)) { return false; }
+        if (distX > (rect.w / 2 + circle.r)) { return false; }
+        if (distY > (rect.h / 2 + circle.r)) { return false; }
 
-            if (distX <= (rect.w/2)) { return true; }
-            if (distY <= (rect.h/2)) { return true; }
+        if (distX <= (rect.w / 2)) { return true; }
+        if (distY <= (rect.h / 2)) { return true; }
 
-            var dx=distX-rect.w/2;
-            var dy=distY-rect.h/2;
-            return (dx*dx+dy*dy<=(circle.r*circle.r));
+        var dx = distX - rect.w / 2;
+        var dy = distY - rect.h / 2;
+        return (dx * dx + dy * dy <= (circle.r * circle.r));
     }
 
     return Player;
