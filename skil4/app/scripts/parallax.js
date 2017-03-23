@@ -110,7 +110,7 @@ window.Parallax = (function () {
                 this.el.text(this.game.score);
                 break;
             case 'hiScore':
-                this.el.text("Highscore: " + score);
+                this.el.text("Highscore: " + this.game.score);
                 break;
         }
         this.el.css('transform', 'translateX(' + this.pos.x + 'px)');
