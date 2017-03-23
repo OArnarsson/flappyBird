@@ -99,6 +99,10 @@ window.Game = (function () {
         this.topPipe.reset();
         this.bottomPipe.reset();
         this.player.reset();
+        if (this.score > this.hiScore) {
+            this.hiScore = this.score;
+        }
+        localStorage.setItem("hiScore", this.hiScore);
         this.score = 0;
 
     };
@@ -108,10 +112,8 @@ window.Game = (function () {
      */
     Game.prototype.gameover = function () {
         this.isPlaying = false;
-        if (this.score > this.hiScore) {
-            this.hiScore = this.score;
-        }
-        localStorage.setItem("hiScore", this.hiScore);
+        this.topPipe.reset();
+        this.bottomPipe.reset();
         // Should be refactored into a Scoreboard class.
         var scoreboardEl = this.el.find('.Scoreboard');
         var that = this;
