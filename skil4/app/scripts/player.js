@@ -101,6 +101,7 @@ window.Player = (function () {
         var rectTop={x:this.game.topPipe.el.position().left,y:this.game.topPipe.el.position().top,w:this.game.topPipe.el.width(),h:this.game.topPipe.el.height()};
         var rectBottom={x:this.game.bottomPipe.el.position().left,y:this.game.bottomPipe.el.position().top,w:this.game.bottomPipe.el.width(),h:this.game.bottomPipe.el.height()};
         if(this.checkCollision2(circle, rectTop) || this.checkCollision2(circle, rectBottom)){
+            deadSound.volume = this.game.volume;
             deadSound.play();
             return this.game.gameover();
         }

@@ -24,6 +24,9 @@ window.Game = (function () {
         this.scoreDisplay = new window.Parallax(this.el.find('.Score'), this, 0, 'Score');
         this.hiScoreDisplay = new window.Parallax(this.el.find('.hiScore'), this, 0, 'hiScore');
         this.isPlaying = false;
+        this.muteButton = this.el.find('.Mute');
+        var that = this;
+        this.muteButton.click(function () {that.mute()});
 
         // Cache a bound onFrame since we need it each frame.
         this.onFrame = this.onFrame.bind(this);
@@ -92,8 +95,6 @@ window.Game = (function () {
      */
     Game.prototype.reset = function () {
         this.player.reset();
-        console.log(this.score);
-        console.log(this.hiScore);
         if (this.score > this.hiScore) {
             this.hiScore = this.score;
         }
@@ -122,11 +123,14 @@ window.Game = (function () {
     };
 
     Game.prototype.mute = function () {
+        console.log('mutebutton');
         if (this.volume == 1) {
             this.volume = 0;
+            this.muteButton.css('background', 'url(../images/mute.svg')
         }
         else {
             this.volume = 1;
+            this.muteButton.css('background', 'url(../images/volume.svg')
         }
     }
 
