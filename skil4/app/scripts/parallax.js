@@ -44,8 +44,8 @@ window.Parallax = (function () {
             case 'Ground':
                 this.pos.x = 0;
                 this.pos.y = 0;
-                this.width = 750;
-                this.el.width(750);
+                this.width = this.game.width*2;
+                this.el.width(this.game.width*2);
                 this.height = this.game.groundHeight;
                 break;
             case 'TopPipe':
@@ -78,7 +78,7 @@ window.Parallax = (function () {
                 }
                 break;
             case 'Ground':
-                if (this.width/3.4 + this.pos.x < 0) {
+                if (this.pos.x < -this.width/2) {
                     this.pos.x = 0;
                 }
                 break;

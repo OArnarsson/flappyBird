@@ -9,7 +9,7 @@ window.Game = (function() {
 	 * @constructor
 	 */
 	var Game = function(el) {
-	    this.baseSpeed = 3.14159265359
+	    this.baseSpeed = 3.2
 		this.el = el;
         this.width = 0;
         this.height = 0;

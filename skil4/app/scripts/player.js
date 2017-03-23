@@ -77,7 +77,7 @@ window.Player = (function () {
         if (this.el.position().top < 0 ||
             this.el.position().top + this.el.height() > (this.game.height - this.game.groundHeight)) {
             //deadSound.play();
-            //return this.game.gameover();
+            return this.game.gameover();
         }
     };
 
