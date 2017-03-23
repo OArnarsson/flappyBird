@@ -88,6 +88,7 @@ window.Player = (function () {
         Player.prototype.checkCollision = function () {
             if (this.el.position().top < 0 ||
                 this.el.position().top + this.el.height() > (this.game.height - this.game.groundHeight)) {
+                deadSound.volume = this.game.volume / 2;
                 deadSound.play();
                 return this.game.gameover();
             }

@@ -49,7 +49,6 @@ window.Parallax = (function () {
                 break;
             case 'TopPipe':
                 this.pos.x = this.game.width + 50;
-                this.pos.y = 0;
                 this.width = pipeWidth;
                 this.height = Math.floor((Math.random() * (playField / 2)));
                 this.el.width(this.width);
@@ -59,7 +58,6 @@ window.Parallax = (function () {
                 break;
             case 'BottomPipe':
                 this.pos.x = this.game.width + 50;
-                this.pos.y = 0;
                 this.width = pipeWidth;
                 this.height = (playField - topHeight - gap);
                 this.el.width(this.width);

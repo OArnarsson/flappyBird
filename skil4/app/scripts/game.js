@@ -28,7 +28,7 @@ window.Game = (function () {
         this.isPlaying = false;
         this.muteButton = this.el.find('.Mute');
         var that = this;
-        this.muteButton.click(function () {that.mute()});
+        this.muteButton.click(function () { that.mute() });
 
         // Cache a bound onFrame since we need it each frame.
         this.onFrame = this.onFrame.bind(this);
@@ -99,10 +99,6 @@ window.Game = (function () {
         this.topPipe.reset();
         this.bottomPipe.reset();
         this.player.reset();
-        if (this.score > this.hiScore) {
-            this.hiScore = this.score;
-        }
-        localStorage.setItem("hiScore", this.hiScore);
         this.score = 0;
 
     };
@@ -112,6 +108,10 @@ window.Game = (function () {
      */
     Game.prototype.gameover = function () {
         this.isPlaying = false;
+        if (this.score > this.hiScore) {
+            this.hiScore = this.score;
+        }
+        localStorage.setItem("hiScore", this.hiScore);
         this.topPipe.reset();
         this.bottomPipe.reset();
         // Should be refactored into a Scoreboard class.
