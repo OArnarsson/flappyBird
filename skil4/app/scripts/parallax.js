@@ -18,7 +18,6 @@ window.Parallax = (function () {
         this.reset();
         pipeWidth = this.game.width / 5;
         playField = (this.game.height - this.game.groundHeight);
-        // TODO: FIX HEIGHT MESS UP!
         gap = Math.floor((Math.random() * 35) + 100);
     };
 
@@ -53,7 +52,7 @@ window.Parallax = (function () {
                 this.pos.y = 0;
                 this.width = pipeWidth;
                 this.height = Math.floor((Math.random() * (playField / 2)));
-                console.log(this.height)
+                console.log(this.height);
                 topHeight = this.height;
                 this.el.width(this.width);
                 this.el.height(this.height);

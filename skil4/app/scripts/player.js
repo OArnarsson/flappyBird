@@ -24,7 +24,7 @@ window.Player = (function () {
     var Player = function (el, game) {
         this.el = el;
         this.game = game;
-        this.pos = {x: INITIAL_POSITION_X, y: 0};
+        this.pos = { x: INITIAL_POSITION_X, y: 0 };
         this.gravity = 0.024;
         this.power = 0.80;
         this.velocity = 0;
@@ -61,6 +61,7 @@ window.Player = (function () {
         }
 
         this.checkCollisionWithBounds();
+        this.checkCollisionWithPipes();
 
         // Update UI
         this.el.css('transform', 'translateY(' + this.pos.y + 'px) rotate(' + this.velocity * 20 + 'deg)');
@@ -68,9 +69,23 @@ window.Player = (function () {
     };
 
     Player.prototype.flap = function () {
-        console.log('flap');
+        console.log(this.game.width*0.2);
         this.velocity -= this.power;
         flapSound.cloneNode().play();
+    }
+
+    Player.prototype.checkCollisionWithPipes = function () {
+        if (this.game.topPipe.pos.x-(this.game.topPipe.width/2) <= this.game.width*0.2 && this.game.topPipe.pos.x+(this.game.topPipe.width) > this.game.width*0.2) {
+            this.game.topPipe.el.css('background', 'red');
+            this.game.bottomPipe.el.css('background', 'red');
+            if(this.pos.y >= this.game.topPipe.height) {
+                //TODO: FIX STUPID ABSOLUTE VALUES!
+            }
+        }
+        else {
+            this.game.topPipe.el.css('background', 'blue');
+            this.game.bottomPipe.el.css('background', 'blue');
+        }
     }
 
     Player.prototype.checkCollisionWithBounds = function () {
