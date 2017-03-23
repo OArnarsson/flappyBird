@@ -114,7 +114,8 @@ window.Parallax = (function () {
                 this.el.text("Highscore: " + this.game.hiScore);
                 break;
         }
-        this.el.css('transform', 'translateX(' + this.pos.x + 'px)');
+        this.el.css({"transform": "translate3d(" + this.pos.x +"px, 0px, 0px)"});
+        //this.el.css('transform', 'translateX(' + this.pos.x + 'px)');
     }
     return Parallax;
 })();
