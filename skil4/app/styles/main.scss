@@ -1,6 +1,11 @@
 // bower:scss
 // endbower
 
+@font-face {
+  font-family: 'FB';
+  src: url('../fonts/FB.woff');
+}
+
 body {
   background: #333;
   margin: 0;
@@ -12,7 +17,11 @@ body {
 }
 
 .Score, .hiScore {
+  font-family: "FB";
+  color: white;
   position: absolute;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #333;
   width: 100%;
   text-align: center;
   font-size: 6em;
