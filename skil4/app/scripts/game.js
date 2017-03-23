@@ -27,8 +27,9 @@ window.Game = (function () {
         this.bottomPipe = new window.Parallax(this.el.find('.BottomPipe'), this, this.baseSpeed, 'BottomPipe');
         this.isPlaying = false;
         this.muteButton = this.el.find('.Mute');
-        var that = this;
         this.muteButton.click(function () { that.mute() });
+        var that = this;
+        var controls = window.controls;
 
         // Cache a bound onFrame since we need it each frame.
         this.onFrame = this.onFrame.bind(this);
@@ -78,6 +79,14 @@ window.Game = (function () {
 
         // Request next frame.
         window.requestAnimationFrame(this.onFrame);
+
+        if (Controls.mute() == true) {
+            this.mute();
+        }
+
+        if (Controls.reset() == true) {
+            this.reset();
+        }
     };
 
     /**
@@ -127,7 +136,6 @@ window.Game = (function () {
     };
 
     Game.prototype.mute = function () {
-        console.log('mutebutton');
         if (this.volume == 1) {
             this.volume = 0;
             this.muteButton.css('background', 'url(../images/mute.svg')
