@@ -43,8 +43,8 @@ window.Parallax = (function () {
             case 'Ground':
                 this.pos.x = 0;
                 this.pos.y = 0;
-                this.width = this.game.width*2;
-                this.el.width(this.game.width*2);
+                this.width = this.game.width * 2;
+                this.el.width(this.game.width * 2);
                 this.height = this.game.groundHeight;
                 break;
             case 'TopPipe':
@@ -52,25 +52,22 @@ window.Parallax = (function () {
                 this.pos.y = 0;
                 this.width = pipeWidth;
                 this.height = Math.floor((Math.random() * (playField / 2)));
-                console.log(this.height);
-                topHeight = this.height;
+                console.log(this.height)
                 this.el.width(this.width);
                 this.el.height(this.height);
+                topHeight = this.height;
                 this.el.css("top", 0);
             case 'BottomPipe':
                 this.pos.x = this.game.width + 50;
                 this.pos.y = 0;
                 this.width = pipeWidth;
                 this.height = (playField - topHeight - gap);
-                //console.log('Total: ' +(this.height+ topHeight) + ", bottom:" + this.height + " , top height: " +  topHeight);
-                //console.log('Playfield: ' + playField);
                 this.el.width(this.width);
                 this.el.height(this.height);
                 this.el.css("bottom", this.game.groundHeight + 'px');
         }
     }
     Parallax.prototype.update = function () {
-        // Check if out of bounds
         this.pos.x -= this.speed;
 
         switch (this.name) {
@@ -83,7 +80,7 @@ window.Parallax = (function () {
                 this.el.css('background-position-x', this.pos.x + 'px');
                 return;
             case 'City':
-                if (this.width/3.4 + this.pos.x < 0) {
+                if (this.width / 3.4 + this.pos.x < 0) {
                     this.pos.x = 0;
                 }
                 break;
@@ -101,9 +98,6 @@ window.Parallax = (function () {
                     gap = Math.floor((Math.random() * 35) + 100);
                     this.height = (playField - topHeight - gap);
                     this.el.height(this.height);
-                    //console.log('Playfield: ' + playField);
-                    //console.log('Gap: ' + gap);
-                    //console.log('Total: ' +(this.height+ topHeight));
                 }
                 break;
         }

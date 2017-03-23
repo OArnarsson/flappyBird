@@ -1,5 +1,5 @@
 
-window.Game = (function() {
+window.Game = (function () {
 	'use strict';
 
 
@@ -8,19 +8,17 @@ window.Game = (function() {
 	 * @param {Element} el jQuery element containing the game.
 	 * @constructor
 	 */
-	var Game = function(el) {
-	    this.baseSpeed = 3.2
+	var Game = function (el) {
+		this.baseSpeed = 3.2
 		this.el = el;
-        this.width = 0;
-        this.height = 0;
-        this.setGameSize();
-        this.groundHeight = 80;
+		this.width = 0;
+		this.height = 0;
+		this.setGameSize();
+		this.groundHeight = 80;
 		this.player = new window.Player(this.el.find('.Player'), this);
 		this.clouds = new window.Parallax(this.el.find('.Clouds'), this, 0.5, 'Cloud');
-        this.city = new window.Parallax(this.el.find('.City'), this, 0.15, 'City');
-        this.ground = new window.Parallax(this.el.find('.Ground'), this, this.baseSpeed, 'Ground');
-        this.topPipe = new window.Parallax(this.el.find('.TopPipe'), this, this.baseSpeed, 'TopPipe');
-        this.bottomPipe = new window.Parallax(this.el.find('.BottomPipe'), this, this.baseSpeed, 'BottomPipe');
+		this.city = new window.Parallax(this.el.find('.City'), this, 0.15, 'City');
+		this.ground = new window.Parallax(this.el.find('.Ground'), this, this.baseSpeed, 'Ground');
 		this.isPlaying = false;
 		this.score = 0;
 
@@ -31,26 +29,25 @@ window.Game = (function() {
     /**
      * Some shared constants.
      */
-    Game.prototype.setGameSize = function () {
-      var h = window.innerHeight;
-      var w = window.innerWidth;
+	Game.prototype.setGameSize = function () {
+		var h = window.innerHeight;
+		var w = window.innerWidth;
 
-      if(h > 576){
-          w = 414;
-          h = 736;
-      }
-        this.width = w;
-        this.height = h;
-      console.log(this.el);
-      this.el.height(h);
-      this.el.width(w);
-    }
+		if (h > 576) {
+			w = 414;
+			h = 736;
+		}
+		this.width = w;
+		this.height = h;
+		this.el.height(h);
+		this.el.width(w);
+	}
 
 	/**
 	 * Runs every frame. Calculates a delta and allows each game
 	 * entity to update itself.
 	 */
-	Game.prototype.onFrame = function() {
+	Game.prototype.onFrame = function () {
 		// Check if the game loop should stop.
 		if (!this.isPlaying) {
 			return;
@@ -58,14 +55,14 @@ window.Game = (function() {
 
 		// Calculate how long since last frame in seconds.
 		var now = +new Date() / 1000,
-				delta = now - this.lastFrame;
+			delta = now - this.lastFrame;
 		this.lastFrame = now;
 
 		// Update game entities.
 		this.player.onFrame(delta);
-        this.clouds.update();
+		this.clouds.update();
 		this.city.update();
-        this.ground.update();
+		this.ground.update();
 		this.topPipe.update();
 		this.bottomPipe.update();
 
@@ -76,7 +73,7 @@ window.Game = (function() {
 	/**
 	 * Starts a new game.
 	 */
-	Game.prototype.start = function() {
+	Game.prototype.start = function () {
 		this.reset();
 
 		// Restart the onFrame loop
@@ -88,18 +85,17 @@ window.Game = (function() {
 	/**
 	 * Resets the state of the game so a new game can be started.
 	 */
-	Game.prototype.reset = function() {
+	Game.prototype.reset = function () {
 		this.player.reset();
 		this.score = 0;
 		this.topPipe = new window.Parallax(this.el.find('.TopPipe'), this, this.baseSpeed, 'TopPipe');
-        this.bottomPipe = new window.Parallax(this.el.find('.BottomPipe'), this, this.baseSpeed, 'BottomPipe');
-		
+		this.bottomPipe = new window.Parallax(this.el.find('.BottomPipe'), this, this.baseSpeed, 'BottomPipe');
 	};
 
 	/**
 	 * Signals that the game is over.
 	 */
-	Game.prototype.gameover = function() {
+	Game.prototype.gameover = function () {
 		this.isPlaying = false;
 
 		// Should be refactored into a Scoreboard class.
@@ -108,10 +104,10 @@ window.Game = (function() {
 		scoreboardEl
 			.addClass('is-visible')
 			.find('.Scoreboard-restart')
-				.one('click', function() {
-					scoreboardEl.removeClass('is-visible');
-					that.start();
-				});
+			.one('click', function () {
+				scoreboardEl.removeClass('is-visible');
+				that.start();
+			});
 	};
 
 

@@ -8,7 +8,7 @@ window.Player = (function () {
     var SPEED = 30; // * 10 pixels per second
     var WIDTH = 5;
     var HEIGHT = 5;
-    var INITIAL_POSITION_X = 20;
+    var INITIAL_POSITION_X = 0.3;
     var INITIAL_POSITION_Y = 35;
     var MAXSPEED = 0.85;
     var volume = 1;
@@ -28,7 +28,7 @@ window.Player = (function () {
         this.gravity = 0.024;
         this.power = 0.80;
         this.velocity = 0;
-        this.el.css("left", INITIAL_POSITION_X + '%');
+        this.el.css("left", INITIAL_POSITION_X * 100 + '%');
         this.el.css("top", INITIAL_POSITION_Y + '%');
     };
 
@@ -48,6 +48,7 @@ window.Player = (function () {
 
     Player.prototype.onFrame = function (delta) {
         this.velocity += this.gravity;
+        //this.velocity += 0;
         this.pos.y += this.velocity * 10;
 
         if (this.velocity > MAXSPEED) {
@@ -60,8 +61,7 @@ window.Player = (function () {
             this.flap();
         }
 
-        this.checkCollisionWithBounds();
-        this.checkCollisionWithPipes();
+        this.checkCollision();
 
         // Update UI
         this.el.css('transform', 'translateY(' + this.pos.y + 'px) rotate(' + this.velocity * 20 + 'deg)');
@@ -69,33 +69,23 @@ window.Player = (function () {
     };
 
     Player.prototype.flap = function () {
-        console.log(this.game.width*0.2);
         this.velocity -= this.power;
         flapSound.cloneNode().play();
     }
 
-    Player.prototype.checkCollisionWithPipes = function () {
-        if (this.game.topPipe.pos.x-(this.game.topPipe.width/2) <= this.game.width*0.2 && this.game.topPipe.pos.x+(this.game.topPipe.width) > this.game.width*0.2) {
-            this.game.topPipe.el.css('background', 'red');
-            this.game.bottomPipe.el.css('background', 'red');
-            if(this.pos.y >= this.game.topPipe.height) {
-                //TODO: FIX STUPID ABSOLUTE VALUES!
+    Player.prototype.checkCollision = function () {
+        if (this.game.topPipe.pos.x - (this.game.topPipe.width / 2) <= this.game.width * INITIAL_POSITION_X && this.game.topPipe.pos.x + (this.game.topPipe.width) > this.game.width * INITIAL_POSITION_X) {
+            if (this.pos.y + this.game.height * 0.35 <= this.game.topPipe.height || this.pos.y + this.game.height * 0.35 + 50 >= this.game.bottomPipe.el.position().top) {
+                deadSound.play();
+                return this.game.gameover();
             }
         }
-        else {
-            this.game.topPipe.el.css('background', 'blue');
-            this.game.bottomPipe.el.css('background', 'blue');
+        if (this.el.position().top < 0 ||
+            this.el.position().top + this.el.height() > (this.game.height - this.game.groundHeight)) {
+            deadSound.play();
+            return this.game.gameover();
         }
     }
 
-    Player.prototype.checkCollisionWithBounds = function () {
-        if (this.el.position().top < 0 ||
-            this.el.position().top + this.el.height() > (this.game.height - this.game.groundHeight)) {
-            //deadSound.play();
-            return this.game.gameover();
-        }
-    };
-
     return Player;
-
 })();
