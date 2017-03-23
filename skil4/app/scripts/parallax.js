@@ -69,7 +69,7 @@ window.Parallax = (function () {
             case 'hiScore':
                 var score = localStorage.getItem("hiScore") || 0;
                 this.game.hiScore = score;
-                this.el.text(score);
+                this.el.text("Highscore: " + score);
                 break;
         }
     }

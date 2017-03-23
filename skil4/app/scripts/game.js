@@ -16,6 +16,7 @@ window.Game = (function () {
         this.groundHeight = 80;
         this.score = 0;
         this.hiScore = 0;
+        this.volume = 1;
         this.player = new window.Player(this.el.find('.Player'), this);
         this.clouds = new window.Parallax(this.el.find('.Clouds'), this, 0.5, 'Cloud');
         this.city = new window.Parallax(this.el.find('.City'), this, 0.15, 'City');
@@ -119,6 +120,15 @@ window.Game = (function () {
                 that.start();
             });
     };
+
+    Game.prototype.mute = function () {
+        if (this.volume == 1) {
+            this.volume = 0;
+        }
+        else {
+            this.volume = 1;
+        }
+    }
 
 
     return Game;

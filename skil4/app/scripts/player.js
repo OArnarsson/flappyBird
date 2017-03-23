@@ -11,13 +11,10 @@ window.Player = (function () {
     var INITIAL_POSITION_X = 0.3;
     var INITIAL_POSITION_Y = 35;
     var MAXSPEED = 0.85;
-    var volume = 1;
     var flapSound = new Audio('../sounds/flap.wav');
     var deadSound = new Audio('../sounds/gameOver.wav');
-    flapSound.volume = volume;
     flapSound.preload = 'auto';
     flapSound.load();
-    deadSound.volume = volume;
     deadSound.preload = 'auto';
     deadSound.load();
 
@@ -42,8 +39,6 @@ window.Player = (function () {
         this.velocity = 0;
         this.el.css("top", INITIAL_POSITION_Y + '%');
         this.el.css('transform', 'translateY(' + this.pos.y + 'em) rotate(' + this.velocity * 20 + 'deg)');
-        flapSound.volume = volume;
-        deadSound.volume = volume;
     };
 
 
@@ -72,7 +67,9 @@ window.Player = (function () {
 
     Player.prototype.flap = function () {
         this.velocity -= this.power;
-        flapSound.cloneNode().play();
+        var newFlap = flapSound.cloneNode()
+        newFlap.volume = this.game.volume;
+        newFlap.play();
     }
 
     Player.prototype.checkScore = function () {
@@ -91,12 +88,14 @@ window.Player = (function () {
     Player.prototype.checkCollision = function () {
         if (this.game.topPipe.pos.x - (this.game.topPipe.width / 2) <= this.game.width * INITIAL_POSITION_X && this.game.topPipe.pos.x + (this.game.topPipe.width) > this.game.width * INITIAL_POSITION_X) {
             if (this.pos.y + this.game.height * 0.35 <= this.game.topPipe.height || this.pos.y + this.game.height * 0.35 + 50 >= this.game.bottomPipe.el.position().top) {
+                deadSound.volume = this.game.volume;
                 deadSound.play();
                 return this.game.gameover();
             }
         }
         if (this.el.position().top < 0 ||
             this.el.position().top + this.el.height()+10 > (this.game.height - this.game.groundHeight)) {
+            deadSound.volume = this.game.volume;
             deadSound.play();
             return this.game.gameover();
         }
