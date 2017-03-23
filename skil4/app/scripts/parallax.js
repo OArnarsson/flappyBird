@@ -17,7 +17,7 @@ window.Parallax = (function () {
         this.height = 0;
         this.reset();
         pipeWidth = this.game.width / 5;
-        playField = this.game.height - this.game.groundHeight;
+        playField = (this.game.height - this.game.groundHeight);
         // TODO: FIX HEIGHT MESS UP!
         gap = Math.floor((Math.random() * 35) + 100);
     };
@@ -53,6 +53,7 @@ window.Parallax = (function () {
                 this.pos.y = 0;
                 this.width = pipeWidth;
                 this.height = Math.floor((Math.random() * (playField / 2)));
+                console.log(this.height)
                 topHeight = this.height;
                 this.el.width(this.width);
                 this.el.height(this.height);
@@ -61,7 +62,9 @@ window.Parallax = (function () {
                 this.pos.x = this.game.width + 50;
                 this.pos.y = 0;
                 this.width = pipeWidth;
-                this.height = playField - topHeight - gap;
+                this.height = (playField - topHeight - gap);
+                //console.log('Total: ' +(this.height+ topHeight) + ", bottom:" + this.height + " , top height: " +  topHeight);
+                //console.log('Playfield: ' + playField);
                 this.el.width(this.width);
                 this.el.height(this.height);
                 this.el.css("bottom", this.game.groundHeight + 'px');
@@ -78,10 +81,8 @@ window.Parallax = (function () {
                 }
                 break;
             case 'Ground':
-                if (this.pos.x < -this.width/2) {
-                    this.pos.x = 0;
-                }
-                break;
+                this.el.css('background-position-x', this.pos.x + 'px');
+                return;
             case 'City':
                 if (this.width/3.4 + this.pos.x < 0) {
                     this.pos.x = 0;
@@ -99,9 +100,11 @@ window.Parallax = (function () {
                 if (pipeWidth + this.pos.x < 0) {
                     this.pos.x = this.game.width;
                     gap = Math.floor((Math.random() * 35) + 100);
-                    this.height = playField - topHeight - gap;
+                    this.height = (playField - topHeight - gap);
                     this.el.height(this.height);
-                    console.log('Gap: ' + gap);
+                    //console.log('Playfield: ' + playField);
+                    //console.log('Gap: ' + gap);
+                    //console.log('Total: ' +(this.height+ topHeight));
                 }
                 break;
         }
