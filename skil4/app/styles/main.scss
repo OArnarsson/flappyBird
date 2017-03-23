@@ -11,6 +11,17 @@ body {
   justify-content: center;
 }
 
+.Score, .hiScore {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: 6em;
+}
+
+.hiScore {
+  text-align: right;
+}
+
 @import '_parallax';
 @import '_game-canvas';
 @import '_player';

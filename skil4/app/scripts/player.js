@@ -30,6 +30,7 @@ window.Player = (function () {
         this.velocity = 0;
         this.el.css("left", INITIAL_POSITION_X * 100 + '%');
         this.el.css("top", INITIAL_POSITION_Y + '%');
+        this.givingScore = false;
     };
 
     /**
@@ -62,6 +63,7 @@ window.Player = (function () {
         }
 
         this.checkCollision();
+        this.checkScore();
 
         // Update UI
         this.el.css('transform', 'translateY(' + this.pos.y + 'px) rotate(' + this.velocity * 20 + 'deg)');
@@ -71,6 +73,19 @@ window.Player = (function () {
     Player.prototype.flap = function () {
         this.velocity -= this.power;
         flapSound.cloneNode().play();
+    }
+
+    Player.prototype.checkScore = function () {
+        if (this.givingScore) {
+            if (this.game.topPipe.pos.x + this.game.topPipe.width <= this.game.width * INITIAL_POSITION_X) {
+                this.givingScore = false;
+                this.game.score += 1;
+            }
+        }
+
+        if (this.game.topPipe.pos.x-this.game.topPipe.width > this.game.width * INITIAL_POSITION_X) {
+            this.givingScore = true;
+        }
     }
 
     Player.prototype.checkCollision = function () {

@@ -15,12 +15,15 @@ window.Game = (function () {
 		this.height = 0;
 		this.setGameSize();
 		this.groundHeight = 80;
+		this.score = 0;
+		this.hiScore = 0;
 		this.player = new window.Player(this.el.find('.Player'), this);
 		this.clouds = new window.Parallax(this.el.find('.Clouds'), this, 0.5, 'Cloud');
 		this.city = new window.Parallax(this.el.find('.City'), this, 0.15, 'City');
 		this.ground = new window.Parallax(this.el.find('.Ground'), this, this.baseSpeed, 'Ground');
+		this.scoreDisplay = new window.Parallax(this.el.find('.Score'), this, 0, 'Score');
+		this.hiScoreDisplay = new window.Parallax(this.el.find('.hiScore'), this, 0, 'hiScore');
 		this.isPlaying = false;
-		this.score = 0;
 
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
@@ -65,6 +68,8 @@ window.Game = (function () {
 		this.ground.update();
 		this.topPipe.update();
 		this.bottomPipe.update();
+		this.scoreDisplay.update();
+		this.hiScoreDisplay.update();
 
 		// Request next frame.
 		window.requestAnimationFrame(this.onFrame);
@@ -87,6 +92,11 @@ window.Game = (function () {
 	 */
 	Game.prototype.reset = function () {
 		this.player.reset();
+		                console.log(this.score);
+		                console.log(this.hiScore);
+		if (this.score > this.hiScore) {
+			this.hiScore = this.score;
+		}
 		this.score = 0;
 		this.topPipe = new window.Parallax(this.el.find('.TopPipe'), this, this.baseSpeed, 'TopPipe');
 		this.bottomPipe = new window.Parallax(this.el.find('.BottomPipe'), this, this.baseSpeed, 'BottomPipe');

@@ -18,7 +18,7 @@ window.Parallax = (function () {
         this.reset();
         pipeWidth = this.game.width / 5;
         playField = (this.game.height - this.game.groundHeight);
-        gap = Math.floor((Math.random() * 35) + 100);
+        gap = Math.floor((Math.random() * 45) + 105);
     };
 
     Parallax.prototype.reset = function () {
@@ -52,7 +52,6 @@ window.Parallax = (function () {
                 this.pos.y = 0;
                 this.width = pipeWidth;
                 this.height = Math.floor((Math.random() * (playField / 2)));
-                console.log(this.height)
                 this.el.width(this.width);
                 this.el.height(this.height);
                 topHeight = this.height;
@@ -66,6 +65,9 @@ window.Parallax = (function () {
                 this.el.width(this.width);
                 this.el.height(this.height);
                 this.el.css("bottom", this.game.groundHeight + 'px');
+                break;
+            case 'hiScore':
+                this.el.text(this.game.hiScore);
                 break;
         }
     }
@@ -97,10 +99,16 @@ window.Parallax = (function () {
             case 'BottomPipe':
                 if (pipeWidth + this.pos.x < 0) {
                     this.pos.x = this.game.width;
-                    gap = Math.floor((Math.random() * 35) + 100);
+                    gap = Math.floor((Math.random() * 45) + 105);
                     this.height = (playField - topHeight - gap);
                     this.el.height(this.height);
                 }
+                break;
+            case 'Score':
+                this.el.text(this.game.score);
+                break;
+            case 'hiScore':
+                this.el.text(this.game.hiScore);
                 break;
         }
         this.el.css('transform', 'translateX(' + this.pos.x + 'px)');
