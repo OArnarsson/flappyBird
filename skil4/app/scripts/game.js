@@ -112,6 +112,8 @@ window.Game = (function () {
      */
     Game.prototype.gameover = function () {
         this.isPlaying = false;
+        this.topPipe.reset();
+        this.bottomPipe.reset();
         // Should be refactored into a Scoreboard class.
         var scoreboardEl = this.el.find('.Scoreboard');
         var that = this;
@@ -122,8 +124,6 @@ window.Game = (function () {
                 scoreboardEl.removeClass('is-visible');
                 that.start();
             });
-        this.topPipe.reset();
-        this.bottomPipe.reset();
     };
 
     Game.prototype.mute = function () {
