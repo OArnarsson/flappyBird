@@ -96,7 +96,7 @@ window.Player = (function () {
             }
         }
         if (this.el.position().top < 0 ||
-            this.el.position().top + this.el.height() > (this.game.height - this.game.groundHeight)) {
+            this.el.position().top + this.el.height()+10 > (this.game.height - this.game.groundHeight)) {
             deadSound.play();
             return this.game.gameover();
         }
