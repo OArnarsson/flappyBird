@@ -57,6 +57,7 @@ window.Parallax = (function () {
                 this.el.height(this.height);
                 topHeight = this.height;
                 this.el.css("top", 0);
+                break;
             case 'BottomPipe':
                 this.pos.x = this.game.width + 50;
                 this.pos.y = 0;
@@ -65,6 +66,7 @@ window.Parallax = (function () {
                 this.el.width(this.width);
                 this.el.height(this.height);
                 this.el.css("bottom", this.game.groundHeight + 'px');
+                break;
         }
     }
     Parallax.prototype.update = function () {
