@@ -1,4 +1,6 @@
 
+
+
 .Scoreboard {
 	position: absolute;
 	left: 50%;
@@ -7,8 +9,10 @@
 	width: em(400px);
 	margin-left: em(-200px);
 	box-sizing: border-box;
+	padding: 3em 0;
 
 	background: rgba(54, 46, 128, 0.51);
+	font-family: "FB";
 	text-align: center;
 
 	// Keep it off-screen
@@ -24,8 +28,8 @@
 }
 
 .Scoreboard-restart {
-	margin-top: em(200px);
-
+	margin-top: 20em;
+	box-shadow: 0 0 0 1px #333;
 	font-size: inherit;
 	padding: em(4px) em(15px);
 	border: em(2px) solid white;
@@ -34,8 +38,10 @@
 }
 
 .Scoreboard-restartText {
-	// NOTICE: You'll lose 10% of your score if you don't change this style!
-	font-family: 'Comic Sans MS', serif;
-	font-size: em(24px);
+	font-size: 3em;
+	font-family: "FB";
 	color: white;
+	-webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #333;
+	text-align: center;
 }
