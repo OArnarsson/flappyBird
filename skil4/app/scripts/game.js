@@ -23,6 +23,8 @@ window.Game = (function () {
         this.ground = new window.Parallax(this.el.find('.Ground'), this, this.baseSpeed, 'Ground');
         this.scoreDisplay = new window.Parallax(this.el.find('.Score'), this, 0, 'Score');
         this.hiScoreDisplay = new window.Parallax(this.el.find('.hiScore'), this, 0, 'hiScore');
+        this.topPipe = new window.Parallax(this.el.find('.TopPipe'), this, this.baseSpeed, 'TopPipe');
+        this.bottomPipe = new window.Parallax(this.el.find('.BottomPipe'), this, this.baseSpeed, 'BottomPipe');
         this.isPlaying = false;
         this.muteButton = this.el.find('.Mute');
         var that = this;
@@ -94,14 +96,15 @@ window.Game = (function () {
      * Resets the state of the game so a new game can be started.
      */
     Game.prototype.reset = function () {
+        this.topPipe.reset();
+        this.bottomPipe.reset();
         this.player.reset();
         if (this.score > this.hiScore) {
             this.hiScore = this.score;
         }
         localStorage.setItem("hiScore", this.hiScore);
         this.score = 0;
-        this.topPipe = new window.Parallax(this.el.find('.TopPipe'), this, this.baseSpeed, 'TopPipe');
-        this.bottomPipe = new window.Parallax(this.el.find('.BottomPipe'), this, this.baseSpeed, 'BottomPipe');
+
     };
 
     /**
@@ -109,10 +112,9 @@ window.Game = (function () {
      */
     Game.prototype.gameover = function () {
         this.isPlaying = false;
-
         // Should be refactored into a Scoreboard class.
-        var that = this;
         var scoreboardEl = this.el.find('.Scoreboard');
+        var that = this;
         scoreboardEl
             .addClass('is-visible')
             .find('.Scoreboard-restart')
@@ -120,6 +122,8 @@ window.Game = (function () {
                 scoreboardEl.removeClass('is-visible');
                 that.start();
             });
+        this.topPipe.reset();
+        this.bottomPipe.reset();
     };
 
     Game.prototype.mute = function () {

@@ -68,6 +68,7 @@ window.Parallax = (function () {
                 break;
             case 'hiScore':
                 var score = localStorage.getItem("hiScore") || 0;
+                console.log('score:'+ score);
                 this.game.hiScore = score;
                 this.el.text("Highscore: " + score);
                 break;
@@ -110,7 +111,7 @@ window.Parallax = (function () {
                 this.el.text(this.game.score);
                 break;
             case 'hiScore':
-                this.el.text("Highscore: " + this.game.score);
+                this.el.text("Highscore: " + this.game.hiScore);
                 break;
         }
         this.el.css('transform', 'translateX(' + this.pos.x + 'px)');
