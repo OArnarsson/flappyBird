@@ -1,18 +1,15 @@
-
 @import 'variables';
 
 .GameCanvas {
-    // Design everything with a nice em of 10px.
-    font-size: $base-font-size;
+  // Design everything with a nice em of 10px.
+  font-size: $base-font-size;
 
-    // Create a 1024x576 pixel canvas.
-    // If everything is defined in em's, you can resize
-    // the whole game just by changing the font-size above
-    // with javascript.
-    position: absolute;
-
-    // Don't draw outside this box.
-    overflow: hidden;
-
-    @extend .peachSunrise;
+  // Create a 1024x576 pixel canvas.
+  // If everything is defined in em's, you can resize
+  // the whole game just by changing the font-size above
+  // with javascript.
+  position: absolute;
+  background-color: #fefefe;
+  // Don't draw outside this box.
+  overflow: hidden;
 }

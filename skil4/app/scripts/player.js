@@ -24,6 +24,10 @@ window.Player = (function () {
             this.pos = {x: INITIAL_POSITION_X, y: 0};
             this.gravity = 0.024;
             this.power = 0.85;
+            if(this.game.debug){
+                this.gravity = 0;
+                this.power = 0;
+            }
             this.velocity = 0;
             this.el.css("left", INITIAL_POSITION_X * 100 + '%');
             this.el.css("top", INITIAL_POSITION_Y * 100 + '%');
@@ -56,8 +60,9 @@ window.Player = (function () {
             if (Controls.didJump() == true) {
                 this.flap();
             }
-
-            this.checkCollision();
+            if(!this.game.debug){
+                this.checkCollision();
+            }
             this.checkScore();
 
             // Update UI

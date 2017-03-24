@@ -8,6 +8,7 @@ window.Game = (function () {
      * @constructor
      */
     var Game = function (el) {
+        this.debug = true;
         this.baseSpeed = 3.2
         this.el = el;
         this.width = 0;
@@ -52,6 +53,7 @@ window.Game = (function () {
         this.el.width(w);
     }
 
+
     /**
      * Runs every frame. Calculates a delta and allows each game
      * entity to update itself.
@@ -81,6 +83,7 @@ window.Game = (function () {
         // Request next frame.
         window.requestAnimationFrame(this.onFrame);
     };
+
 
     /**
      * Starts a new game.
