@@ -3,13 +3,16 @@
 
 .Scoreboard {
 	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
 	left: 50%;
 	top: em(100px);
 	height: em(300px);
 	width: em(400px);
 	margin-left: em(-200px);
 	box-sizing: border-box;
-	padding: 3em 0;
+	padding: 3em 3em;
 
 	background: rgba(54, 46, 128, 0.51);
 	font-family: "FB";
@@ -18,6 +21,55 @@
 	// Keep it off-screen
 	transform: translate(0, em(-400px));
 	transition: transform 0.5s;
+
+	.topRow {
+		display: flex;
+		justify-content: space-around;
+		width: 100%;
+
+		.medal {
+			height: 100%;
+			width: 30%;
+			align-self: center;
+
+			.wholeTrophy {
+				height: 96px;
+
+				.Circle {
+					fill: rgba(54, 46, 128, 0.51);
+				}
+
+				.Trophy {
+					fill: gold;
+				}
+
+				.TrophySecondary {
+					fill: darkgoldenrod;
+				}
+			}
+		}
+
+
+		.scoreColumn {
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			width: 70%;
+
+				.hiScore, .currScore {
+					width: 100%!important;
+					font-family: "FB";
+					color: white;
+					-webkit-text-stroke-width: 2px;
+					-webkit-text-stroke-color: #333;
+					width: 60%;
+					text-align: right;
+					font-size: 5em;
+				}
+		}
+
+
+	}
 }
 
 /**
@@ -28,7 +80,6 @@
 }
 
 .Scoreboard-restart {
-	margin-top: 20em;
 	box-shadow: 0 0 0 1px #333;
 	font-size: inherit;
 	padding: em(4px) em(15px);

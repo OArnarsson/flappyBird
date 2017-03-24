@@ -66,9 +66,11 @@ window.Parallax = (function () {
                 break;
             case 'hiScore':
                 var score = localStorage.getItem("hiScore") || 0;
-                console.log('score:'+ score);
                 this.game.hiScore = score;
                 this.el.text("Highscore: " + score);
+                break;
+            case 'currScore':
+                this.el.text("Score: " + this.game.score);
                 break;
         }
     }
@@ -109,7 +111,11 @@ window.Parallax = (function () {
                 this.el.text(this.game.score);
                 break;
             case 'hiScore':
-                this.el.text("Highscore: " + this.game.hiScore);
+                this.el.text("Best: " + this.game.hiScore);
+                break;
+            case 'currScore':
+                this.el.text("Score: " + this.game.score);
+                console.log(this.el.text());
                 break;
         }
         this.el.css({"transform": "translate3d(" + this.pos.x +"px, 0px, 0px)"});

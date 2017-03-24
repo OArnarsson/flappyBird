@@ -23,6 +23,7 @@ window.Game = (function () {
         this.ground = new window.Parallax(this.el.find('.Ground'), this, this.baseSpeed, 'Ground');
         this.scoreDisplay = new window.Parallax(this.el.find('.Score'), this, 0, 'Score');
         this.hiScoreDisplay = new window.Parallax(this.el.find('.hiScore'), this, 0, 'hiScore');
+        this.currScore = new window.Parallax(this.el.find('.currScore'), this, 0, 'currScore');
         this.topPipe = new window.Parallax(this.el.find('.TopPipe'), this, this.baseSpeed, 'TopPipe');
         this.bottomPipe = new window.Parallax(this.el.find('.BottomPipe'), this, this.baseSpeed, 'BottomPipe');
         this.isPlaying = false;
@@ -75,6 +76,7 @@ window.Game = (function () {
         this.bottomPipe.update();
         this.scoreDisplay.update();
         this.hiScoreDisplay.update();
+        this.currScore.update();
 
         // Request next frame.
         window.requestAnimationFrame(this.onFrame);
