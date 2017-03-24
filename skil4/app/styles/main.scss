@@ -14,6 +14,7 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
+  user-select: none;
 }
 
 .Mute {
@@ -25,12 +26,6 @@ body {
   background: url('../images/volume.svg');
   background-size: 32px 32px;
   cursor: pointer;
-}
-
-svg {
-  fill: white;
-  stroke: black;
-  stroke-width: 4px;
 }
 
 .Score, .hiScore {
@@ -48,3 +43,4 @@ svg {
 @import '_game-canvas';
 @import '_player';
 @import '_scoreboard';
+@import '_splash';

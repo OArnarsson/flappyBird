@@ -2,57 +2,69 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <title>OnRi - FlappyBird</title>
-        <meta name="description" content="">
-<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-        <link rel="shortcut icon" href="/favicon.ico">
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <!-- build:css styles/vendor.css -->
-        <!-- bower:css -->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
 
-        <!-- endbower -->
-        <!-- endbuild -->
-        <!-- build:css(.tmp) styles/main.css -->
-        <link rel="stylesheet" href="styles/main.css">
-        <!-- endbuild -->
-    </head>
-    <body>
-        <!--[if lt IE 10]>
+<head>
+    <meta charset="utf-8">
+    <title>OnRi - FlappyBird</title>
+    <meta name="description" content="">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+</head>
+
+<body>
+    <!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div class="GameCanvas">
+    <div class="GameCanvas">
 
-		  	<div class="Clouds"></div>
-		  	<div class="City"></div>
+        <div class="Clouds"></div>
+        <div class="City"></div>
 
 
-            <div class="TopPipe"></div>
-            <div class="BottomPipe"></div>
+        <div class="TopPipe"></div>
+        <div class="BottomPipe"></div>
 
-		  	<div class="Ground"></div>
-            <div class="Score">0</div>
-            <div class="Mute"></div>
-		 	<div class="Player"></div>
-            <div class="Scoreboard">
-                <div class="hiScore"></div>
-                <button class="Scoreboard-restart">
+        <div class="Ground"></div>
+        <div class="Score">0</div>
+        <div class="Mute"></div>
+        <div class="Player"></div>
+        <div class="Scoreboard">
+            <div class="hiScore"></div>
+            <button class="Scoreboard-restart">
                     <span class="Scoreboard-restartText">Restart</span>
                 </button>
-            </div>
         </div>
+        <div class="SplashScreen is-visible">
+            <div class="welcome">Welcome to FlappyBird</div>
+            <div class="OnRi">by OnRi</div>
+            <button class="SplashScreen-start">
+                    <span class="SplashScreen-startText">Start</span>
+                </button>
+        </div>
+    </div>
 
-        <!-- build:js({app,.tmp}) scripts/main.js -->
-        <script src="scripts/jquery.min.js"></script>
-        <script src="scripts/main.js"></script>
-        <script src="scripts/controls.js"></script>
-        <script src="scripts/game.js"></script>
-        <script src="scripts/player.js"></script>
-		<script src="scripts/parallax.js"></script>
-        <script src="scripts/utils.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({app,.tmp}) scripts/main.js -->
+    <script src="scripts/jquery.min.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/controls.js"></script>
+    <script src="scripts/game.js"></script>
+    <script src="scripts/player.js"></script>
+    <script src="scripts/parallax.js"></script>
+    <script src="scripts/utils.js"></script>
+    <!-- endbuild -->
 </body>
+
 </html>
