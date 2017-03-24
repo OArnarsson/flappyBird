@@ -115,7 +115,6 @@ window.Parallax = (function () {
                 break;
             case 'currScore':
                 this.el.text("Score: " + this.game.score);
-                console.log(this.el.text());
                 break;
         }
         this.el.css({"transform": "translate3d(" + this.pos.x +"px, 0px, 0px)"});
