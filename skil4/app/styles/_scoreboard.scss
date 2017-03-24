@@ -37,14 +37,22 @@
 
 				.Circle {
 					fill: rgba(54, 46, 128, 0.51);
+					stroke: black;
 				}
 
 				.Trophy {
 					fill: gold;
+					stroke:black;
 				}
 
 				.TrophySecondary {
+					fill: goldenrod;
+					stroke: black;
+				}
+
+				.TrophyStand {
 					fill: darkgoldenrod;
+					stroke: black;
 				}
 			}
 		}
