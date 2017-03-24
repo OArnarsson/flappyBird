@@ -118,7 +118,6 @@ window.Game = (function () {
 
         // Should be refactored into a Scoreboard class.
         var scoreboardEl = this.el.find('.Scoreboard');
-        var splashEl = this.el.find('.SplashScreen');
         var that = this;
         scoreboardEl
             .addClass('is-visible')
