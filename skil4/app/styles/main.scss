@@ -40,6 +40,10 @@ body {
   font-size: 5em;
 }
 
+.Score {
+  margin-top: .1em;
+}
+
 @import '_parallax';
 @import '_game-canvas';
 @import '_player';

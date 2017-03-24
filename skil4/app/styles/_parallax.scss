@@ -1,3 +1,4 @@
+@import 'variables';
 
 .Clouds {
   position: absolute;
@@ -28,18 +29,20 @@
   height: 100px;
 }
 
-.TopPipe {
+.pipe {
   position: absolute;
-  background-image: url("../images/pipes.png");
-  background-size: contain;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
+  background-color: #58403C;
+  background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23e8e8e8' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.TopPipe {
+  @extend .pipe;
+  border-bottom-left-radius: $pipe-radius;
+  border-bottom-right-radius: $pipe-radius;
 }
 
 .BottomPipe {
-  position: absolute;
-  background-image: url("../images/pipes.png");
-  background-size: contain;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
+  @extend .pipe;
+  border-top-left-radius: $pipe-radius;
+  border-top-right-radius: $pipe-radius;
 }
