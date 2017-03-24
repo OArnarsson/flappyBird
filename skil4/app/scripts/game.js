@@ -29,7 +29,6 @@ window.Game = (function () {
         this.muteButton = this.el.find('.Mute');
         this.muteButton.click(function () { that.mute() });
         var that = this;
-        var controls = window.controls;
 
         // Cache a bound onFrame since we need it each frame.
         this.onFrame = this.onFrame.bind(this);
@@ -79,14 +78,6 @@ window.Game = (function () {
 
         // Request next frame.
         window.requestAnimationFrame(this.onFrame);
-
-        if (Controls.mute() == true) {
-            this.mute();
-        }
-
-        if (Controls.reset() == true) {
-            this.reset();
-        }
     };
 
     /**
@@ -109,7 +100,8 @@ window.Game = (function () {
         this.bottomPipe.reset();
         this.player.reset();
         this.score = 0;
-
+        var scoreboardEl = this.el.find('.Scoreboard');
+        scoreboardEl.removeClass('is-visible');
     };
 
     /**
@@ -123,8 +115,10 @@ window.Game = (function () {
         localStorage.setItem("hiScore", this.hiScore);
         this.topPipe.reset();
         this.bottomPipe.reset();
+
         // Should be refactored into a Scoreboard class.
         var scoreboardEl = this.el.find('.Scoreboard');
+        var splashEl = this.el.find('.SplashScreen');
         var that = this;
         scoreboardEl
             .addClass('is-visible')
