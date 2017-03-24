@@ -4,9 +4,6 @@ $base-font-size: 10px;
     @return ($px / $base) * 1em;
 }
 
-.darkNight {
-    background: linear-gradient(to bottom, #030212 85%,#191623 100%);
-}
 .pinkSunrise {
     background: linear-gradient(to bottom, #4a4969 0%,#7072ab 50%,#cd82a0 100%);
 }
@@ -21,9 +18,6 @@ $base-font-size: 10px;
 }
 .darkDaylight {
     background: linear-gradient(to bottom, #57c2eb 0%,#246fa9 100%);
-}
-.sunset {
-    background: linear-gradient(to bottom, #163C53 0%,#4F4F47 30%,#C6762D 60%,#B8490F 80%, #2F1107 100%);
 }
 
 
