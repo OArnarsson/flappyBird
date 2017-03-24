@@ -8,19 +8,18 @@ window.Game = (function () {
      * @constructor
      */
     var Game = function (el) {
-        this.debug = true;
+        this.debug = false;
         this.baseSpeed = 3.2
         this.el = el;
         this.width = 0;
         this.height = 0;
         this.setGameSize();
-        this.groundHeight = 80;
         this.score = 0;
         this.hiScore = 0;
         this.volume = 1;
         this.player = new window.Player(this.el.find('.Player'), this);
         this.clouds = new window.Parallax(this.el.find('.Clouds'), this, 0.5, 'Cloud');
-        this.city = new window.Parallax(this.el.find('.City'), this, 0.15, 'City');
+        this.city = new window.Parallax(this.el.find('.City'), this, 0.2, 'City');
         this.ground = new window.Parallax(this.el.find('.Ground'), this, this.baseSpeed, 'Ground');
         this.scoreDisplay = new window.Parallax(this.el.find('.Score'), this, 0, 'Score');
         this.hiScoreDisplay = new window.Parallax(this.el.find('.hiScore'), this, 0, 'hiScore');
@@ -51,6 +50,7 @@ window.Game = (function () {
         this.height = h;
         this.el.height(h);
         this.el.width(w);
+        this.groundHeight = h*0.11;
     }
 
 

@@ -13,10 +13,10 @@
 .City {
   position: absolute;
   bottom: 0;
-  opacity: 0.7;
+  opacity: 0.5;
   background-image: url("../images/city.png");
-  height: 400px;
-  background-size: contain;
+  background-position: bottom;
+  background-size: cover;
 }
 
 .Ground {

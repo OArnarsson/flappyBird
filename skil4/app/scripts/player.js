@@ -10,7 +10,7 @@ window.Player = (function () {
         var HEIGHT = 5;
         var INITIAL_POSITION_X = 0.3;
         var INITIAL_POSITION_Y = 0.35;
-        var MAXSPEED = 1.2;
+        var MAXSPEED = 1.2; // 1.2
         var flapSound = new Audio('../sounds/flap.wav');
         var deadSound = new Audio('../sounds/gameOver.wav');
         flapSound.preload = 'auto';
@@ -22,8 +22,8 @@ window.Player = (function () {
             this.el = el;
             this.game = game;
             this.pos = {x: INITIAL_POSITION_X, y: 0};
-            this.gravity = 0.024;
-            this.power = 0.85;
+            this.gravity = 0.024; //0.024
+            this.power = 0.85; //0.85
             if(this.game.debug){
                 this.gravity = 0;
                 this.power = 0;
@@ -42,7 +42,7 @@ window.Player = (function () {
             this.pos.y = 0;
             this.velocity = 0;
             this.el.css("top", INITIAL_POSITION_Y * 100 + '%');
-            this.el.css('transform', 'translateY(' + this.pos.y + 'em) rotate(' + this.velocity * 20 + 'deg)');
+            this.el.css('transform', 'translate3d(0,' + this.pos.y + 'px, 0) rotate(' + this.velocity * 20 + 'deg)');
         };
 
 
@@ -66,7 +66,7 @@ window.Player = (function () {
             this.checkScore();
 
             // Update UI
-            this.el.css('transform', 'translateY(' + this.pos.y + 'px) rotate(' + this.velocity * 20 + 'deg)');
+            this.el.css('transform', 'translate3d(0,' + this.pos.y + 'px, 0) rotate(' + this.velocity * 20 + 'deg)');
 
         };
 
@@ -91,14 +91,14 @@ window.Player = (function () {
         }
 
         Player.prototype.checkCollision = function () {
-            if (this.el.position().top < 0 ||
+            if (this.el.position().top+100 < 0 ||
                 this.el.position().top + this.el.height() > (this.game.height - this.game.groundHeight)) {
                 deadSound.volume = this.game.volume / 2;
                 deadSound.play();
                 return this.game.gameover();
             }
             else {
-                var circle = {x: this.el.position().left + 25, y: this.el.position().top + 25, r: 22};
+                var circle = {x: this.el.position().left + this.el.width()/2, y: this.el.position().top + this.el.height()/2, r: 22};
                 var rectTop = {
                     x: this.game.topPipe.el.position().left,
                     y: this.game.topPipe.el.position().top,

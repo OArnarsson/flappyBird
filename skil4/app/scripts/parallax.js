@@ -18,7 +18,7 @@ window.Parallax = (function () {
         this.reset();
         pipeWidth = this.game.width / 5;
         playField = (this.game.height - this.game.groundHeight);
-        gap = Math.floor((Math.random() * 45) + 105);
+        gap = Math.floor((Math.random() * 45) + this.game.player.el.height()*4); //105
     };
 
     Parallax.prototype.reset = function () {
@@ -34,17 +34,18 @@ window.Parallax = (function () {
             case 'City':
                 this.pos.x = 0;
                 this.pos.y = 0;
-                this.width = 825;
-                this.height = 400;
-                this.el.width(this.width);
-                this.el.height(this.height);
+                this.el.width(this.game.el.width()*2);
+                this.el.height(this.game.groundHeight*8);
+                this.width = (this.game.el.width());
+                this.height = this.game.groundHeight*8;
                 this.el.css("bottom", this.game.groundHeight + 'px');
                 break;
             case 'Ground':
                 this.pos.x = 0;
                 this.pos.y = 0;
-                this.width = this.game.width * 2;
-                this.el.width(this.game.width * 2);
+                this.el.width(this.game.el.width()*2);
+                this.el.height(this.game.groundHeight+(this.game.groundHeight*0.3));
+                this.width = this.game.el.width();
                 this.height = this.game.groundHeight;
                 break;
             case 'TopPipe':
@@ -84,10 +85,12 @@ window.Parallax = (function () {
                 }
                 break;
             case 'Ground':
-                this.el.css('background-position-x', this.pos.x + 'px');
-                return;
+                if(this.pos.x*-1 >this.width){
+                    this.pos.x = 0;
+                }
+                break;
             case 'City':
-                if (this.width / 3.4 + this.pos.x < 0) {
+                if(this.pos.x*-1 >=this.width){
                     this.pos.x = 0;
                 }
                 break;
@@ -118,7 +121,6 @@ window.Parallax = (function () {
                 break;
         }
         this.el.css({"transform": "translate3d(" + this.pos.x +"px, 0px, 0px)"});
-        //this.el.css('transform', 'translateX(' + this.pos.x + 'px)');
     }
     return Parallax;
 })();
