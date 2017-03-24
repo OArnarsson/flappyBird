@@ -10,7 +10,7 @@ window.Player = (function () {
         var HEIGHT = 5;
         var INITIAL_POSITION_X = 0.3;
         var INITIAL_POSITION_Y = 0.35;
-        var MAXSPEED = 0.85;
+        var MAXSPEED = 1.2;
         var flapSound = new Audio('../sounds/flap.wav');
         var deadSound = new Audio('../sounds/gameOver.wav');
         flapSound.preload = 'auto';
@@ -22,8 +22,8 @@ window.Player = (function () {
             this.el = el;
             this.game = game;
             this.pos = {x: INITIAL_POSITION_X, y: 0};
-            this.gravity = 0.024; //0.024
-            this.power = 0.80;
+            this.gravity = 0.024;
+            this.power = 0.85;
             this.velocity = 0;
             this.el.css("left", INITIAL_POSITION_X * 100 + '%');
             this.el.css("top", INITIAL_POSITION_Y * 100 + '%');
@@ -45,12 +45,12 @@ window.Player = (function () {
         Player.prototype.onFrame = function (delta) {
             this.velocity += this.gravity;
             //this.velocity += 0;
-            this.pos.y += this.velocity * 10;
+            this.pos.y += this.velocity * 11;
 
             if (this.velocity > MAXSPEED) {
                 this.velocity = MAXSPEED;
-            } else if (this.velocity < -MAXSPEED) {
-                this.velocity = -MAXSPEED;
+            } else if (this.velocity < -MAXSPEED*.75) {
+                this.velocity = -MAXSPEED*.75;
             }
 
             if (Controls.didJump() == true) {
