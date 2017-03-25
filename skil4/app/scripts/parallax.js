@@ -26,10 +26,10 @@ window.Parallax = (function () {
             case 'Cloud':
                 this.pos.x = 0;
                 this.pos.y = 0;
-                this.width = this.game.groundHeight;
-                this.height = this.game.groundHeight;
+                this.width = this.game.el.width()*2;
+                this.height = this.game.el.height();
                 this.el.width(this.width);
-                this.el.height(this.game.groundHeight);
+                this.el.height(this.height);
                 break;
             case 'City':
                 this.pos.x = 0;
@@ -80,8 +80,8 @@ window.Parallax = (function () {
 
         switch (this.name) {
             case 'Cloud':
-                if (this.game.width + this.width + this.pos.x < 0) {
-                    this.pos.x = this.width / 2;
+                if(this.pos.x*-1 >this.width/2){
+                    this.pos.x = 0;
                 }
                 break;
             case 'Ground':

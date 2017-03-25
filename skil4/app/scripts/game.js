@@ -2,8 +2,12 @@ window.Game = (function () {
     'use strict';
     var bgSound = new Audio('../sounds/bGroundMusic.mp3');
     bgSound.preload = 'auto';
-    bgSound.volume = 0.5;
+    bgSound.volume = 1;
     bgSound.loop = true;
+    var newHiScore = new Audio('../sounds/whattaMan.mp3');
+    newHiScore.preload = 'auto';
+    newHiScore.volume = 1;
+    bgSound.loop = false;
 
 
 
@@ -25,7 +29,7 @@ window.Game = (function () {
         this.hiScore = 0;
         this.volume = 1;
         this.player = new window.Player(this.el.find('.Player'), this);
-        this.clouds = new window.Parallax(this.el.find('.Clouds'), this, this.baseSpeed*0.15625, 'Cloud');
+        this.clouds = new window.Parallax(this.el.find('.Clouds'), this, this.baseSpeed*0.02083, 'Cloud');
         this.city = new window.Parallax(this.el.find('.City'), this, this.baseSpeed*0.0625, 'City');
         this.ground = new window.Parallax(this.el.find('.Ground'), this, this.baseSpeed, 'Ground');
         this.scoreDisplay = new window.Parallax(this.el.find('.Score'), this, 0, 'Score');
@@ -37,7 +41,7 @@ window.Game = (function () {
         this.muteButton = this.el.find('.Mute');
         this.muteButton.click(function () { that.mute() });
         var that = this;
-        bgSound.play();
+
         // Cache a bound onFrame since we need it each frame.
         this.onFrame = this.onFrame.bind(this);
     };
@@ -99,6 +103,7 @@ window.Game = (function () {
      * Starts a new game.
      */
     Game.prototype.start = function () {
+        bgSound.play();
         this.reset();
         // Restart the onFrame loop
         this.lastFrame = +new Date() / 1000;
@@ -134,6 +139,11 @@ window.Game = (function () {
         // Should be refactored into a Scoreboard class.
         var scoreboardEl = this.el.find('.Scoreboard');
         var trophy = this.el.find('.medal');
+        trophy
+            .removeClass('goldTrophy')
+            .removeClass('silverTrophy')
+            .removeClass('bronzeTrophy')
+            .removeClass('amatureTrophy');
         trophy.addClass(this.getTrophy());
         var that = this;
         scoreboardEl
@@ -143,28 +153,45 @@ window.Game = (function () {
                 scoreboardEl.removeClass('is-visible');
                 that.start();
             });
+        if(this.getTrophy() === 'goldTrophy'){
+            $(bgSound).animate({volume: 0}, 1500);
+            newHiScore.play();
+            $(newHiScore).animate({volume: 1}, 2500);
+            setTimeout(function(){
+                $(newHiScore).animate({volume: 0}, 3000);
+                setTimeout(function(){
+                        $(bgSound).animate({volume: 1}, 1500);
+                },3000);
+            }, 15000);
+        }
     };
 
     Game.prototype.getTrophy = function () {
+        console.log("score :" + this.score + ", hiscore :" + this.hiScore)
         if(this.score >= this.hiScore*0.9){
             return 'goldTrophy';
         }
-        if(this.score >= this.hiScore*0.7){
+        if(this.score >= this.hiScore*0.66){
+            console.log('im here2!!');
             return 'silverTrophy';
         }
         if(this.score >= this.hiScore*0.5){
+            console.log('im here3!!');
             return 'bronzeTrophy';
         }
+        console.log('im here4!!');
         return 'amatureTrophy';
     }
 
     Game.prototype.mute = function () {
         if (this.volume == 1) {
             this.volume = 0;
+            bgSound.volume = 0;
             this.muteButton.css('background', 'url(../images/mute.svg')
         }
         else {
             this.volume = 1;
+            bgSound.volume = 1;
             this.muteButton.css('background', 'url(../images/volume.svg')
         }
     }
