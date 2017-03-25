@@ -1,5 +1,12 @@
 window.Game = (function () {
     'use strict';
+    var bgSound = new Audio('../sounds/bGroundMusic.mp3');
+    bgSound.preload = 'auto';
+    bgSound.volume = 0.5;
+    bgSound.loop = true;
+
+
+
 
 
     /**
@@ -30,10 +37,12 @@ window.Game = (function () {
         this.muteButton = this.el.find('.Mute');
         this.muteButton.click(function () { that.mute() });
         var that = this;
-
+        bgSound.play();
         // Cache a bound onFrame since we need it each frame.
         this.onFrame = this.onFrame.bind(this);
     };
+
+
 
     /**
      * Some shared constants.
@@ -52,6 +61,7 @@ window.Game = (function () {
         this.el.width(w);
         this.groundHeight = h*0.11;
     }
+
 
 
     /**
@@ -90,7 +100,6 @@ window.Game = (function () {
      */
     Game.prototype.start = function () {
         this.reset();
-
         // Restart the onFrame loop
         this.lastFrame = +new Date() / 1000;
         window.requestAnimationFrame(this.onFrame);
