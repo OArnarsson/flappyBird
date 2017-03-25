@@ -27,11 +27,15 @@ window.Controls = (function () {
     var Controls = function () {
         this._didJump = false;
         this.keys = {};
+        var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
         $(window)
             .on('keydown', this._onKeyDown.bind(this))
             .on('keyup', this._onKeyUp.bind(this))
-            .on('click', this._onClick.bind(this))
-            .on('touchstart', this._onClick.bind(this)); // This is for iphone.
+            .on('click', this._onClick.bind(this));
+        // This is for iphone.
+        if(isSafari){
+            $(window).on('touchstart', this._onClick.bind(this));
+        }
     };
 
 
