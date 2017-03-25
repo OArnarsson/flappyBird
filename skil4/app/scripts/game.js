@@ -6,8 +6,8 @@ window.Game = (function () {
     bgSound.loop = true;
     var newHiScore = new Audio('../sounds/whattaMan.mp3');
     newHiScore.preload = 'auto';
-    newHiScore.volume = 1;
-    bgSound.loop = false;
+    newHiScore.volume = 0;
+    newHiScore.loop = true;
 
 
     /**
@@ -101,6 +101,7 @@ window.Game = (function () {
      */
     Game.prototype.start = function () {
         bgSound.play();
+        newHiScore.play();
         this.reset();
         // Restart the onFrame loop
         this.lastFrame = +new Date() / 1000;
@@ -153,7 +154,7 @@ window.Game = (function () {
         if (this.getTrophy() === 'goldTrophy' && this.volume > 0) {
             console.log('im here!');
             $(bgSound).animate({volume: 0}, 1500);
-            newHiScore.play();
+            newHiScore.currentTime = 0;
             $(newHiScore).animate({volume: 1}, 1000);
             var that = this;
             setTimeout(function () {
