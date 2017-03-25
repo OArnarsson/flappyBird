@@ -10,9 +10,6 @@ window.Game = (function () {
     bgSound.loop = false;
 
 
-
-
-
     /**
      * Main game class.
      * @param {Element} el jQuery element containing the game.
@@ -29,8 +26,8 @@ window.Game = (function () {
         this.hiScore = 0;
         this.volume = 1;
         this.player = new window.Player(this.el.find('.Player'), this);
-        this.clouds = new window.Parallax(this.el.find('.Clouds'), this, this.baseSpeed*0.02083, 'Cloud');
-        this.city = new window.Parallax(this.el.find('.City'), this, this.baseSpeed*0.0625, 'City');
+        this.clouds = new window.Parallax(this.el.find('.Clouds'), this, this.baseSpeed * 0.02083, 'Cloud');
+        this.city = new window.Parallax(this.el.find('.City'), this, this.baseSpeed * 0.0625, 'City');
         this.ground = new window.Parallax(this.el.find('.Ground'), this, this.baseSpeed, 'Ground');
         this.scoreDisplay = new window.Parallax(this.el.find('.Score'), this, 0, 'Score');
         this.hiScoreDisplay = new window.Parallax(this.el.find('.hiScore'), this, 0, 'hiScore');
@@ -39,13 +36,14 @@ window.Game = (function () {
         this.bottomPipe = new window.Parallax(this.el.find('.BottomPipe'), this, this.baseSpeed, 'BottomPipe');
         this.isPlaying = false;
         this.muteButton = this.el.find('.Mute');
-        this.muteButton.click(function () { that.mute() });
+        this.muteButton.click(function () {
+            that.mute()
+        });
         var that = this;
 
         // Cache a bound onFrame since we need it each frame.
         this.onFrame = this.onFrame.bind(this);
     };
-
 
 
     /**
@@ -63,9 +61,8 @@ window.Game = (function () {
         this.height = h;
         this.el.height(h);
         this.el.width(w);
-        this.groundHeight = h*0.11;
+        this.groundHeight = h * 0.11;
     }
-
 
 
     /**
@@ -131,7 +128,7 @@ window.Game = (function () {
         if (this.score > this.hiScore) {
             this.hiScore = this.score;
         }
-        localStorage.setItem("hiScore", this.hiScore);
+        localStorage.setItem("hiScore", "0");
         this.topPipe.reset();
         this.bottomPipe.reset();
 
@@ -153,29 +150,33 @@ window.Game = (function () {
                 scoreboardEl.removeClass('is-visible');
                 that.start();
             });
-        if(this.getTrophy() === 'goldTrophy'){
+        if (this.getTrophy() === 'goldTrophy' && this.volume > 0) {
+            console.log('im here!');
             $(bgSound).animate({volume: 0}, 1500);
             newHiScore.play();
-            $(newHiScore).animate({volume: 1}, 2500);
-            setTimeout(function(){
+            $(newHiScore).animate({volume: 1}, 1000);
+            var that = this;
+            setTimeout(function () {
                 $(newHiScore).animate({volume: 0}, 3000);
-                setTimeout(function(){
+                if (that.volume > 0) {
+                    setTimeout(function () {
                         $(bgSound).animate({volume: 1}, 1500);
-                },3000);
+                    }, 3000);
+                }
             }, 15000);
         }
     };
 
     Game.prototype.getTrophy = function () {
         console.log("score :" + this.score + ", hiscore :" + this.hiScore)
-        if(this.score >= this.hiScore*0.9){
+        if (this.score >= this.hiScore * 0.9) {
             return 'goldTrophy';
         }
-        if(this.score >= this.hiScore*0.66){
+        if (this.score >= this.hiScore * 0.66) {
             console.log('im here2!!');
             return 'silverTrophy';
         }
-        if(this.score >= this.hiScore*0.5){
+        if (this.score >= this.hiScore * 0.5) {
             console.log('im here3!!');
             return 'bronzeTrophy';
         }
@@ -194,6 +195,7 @@ window.Game = (function () {
             bgSound.volume = 1;
             this.muteButton.css('background', 'url(../images/volume.svg')
         }
+        newHiScore.volume = 0;
     }
 
 
