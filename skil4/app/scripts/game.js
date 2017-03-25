@@ -10,6 +10,7 @@ window.Game = (function () {
     newHiScore.loop = true;
 
 
+
     /**
      * Main game class.
      * @param {Element} el jQuery element containing the game.
@@ -52,10 +53,11 @@ window.Game = (function () {
     Game.prototype.setGameSize = function () {
         var h = window.innerHeight;
         var w = window.innerWidth;
-
-        if (h > 576) {
+        if (h > 629) {
             w = 414;
             h = 736;
+        } else {
+            this.el.addClass('mobile');
         }
         this.width = w;
         this.height = h;

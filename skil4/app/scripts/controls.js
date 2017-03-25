@@ -13,6 +13,11 @@ window.Controls = (function () {
         40: 'down',
     };
 
+    //we use this for
+    document.ontouchmove = function(event){
+        event.preventDefault();
+    }
+
     /**
      * A singleton class which abstracts all player input,
      * should hide complexity of dealing with keyboard, mouse
@@ -25,7 +30,8 @@ window.Controls = (function () {
         $(window)
             .on('keydown', this._onKeyDown.bind(this))
             .on('keyup', this._onKeyUp.bind(this))
-            .on('click', this._onClick.bind(this));
+            .on('click', this._onClick.bind(this))
+            .on('touchstart', this._onClick.bind(this)); // This is for iphone.
     };
 
 

@@ -5,6 +5,9 @@
   font-family: 'FB';
   src: url('../fonts/FB.woff');
 }
+html {
+  touch-action: manipulation;
+}
 
 body {
   background-color: #98CCFA;
