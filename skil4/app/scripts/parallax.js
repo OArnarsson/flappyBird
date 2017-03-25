@@ -18,7 +18,7 @@ window.Parallax = (function () {
         this.reset();
         pipeWidth = this.game.width / 5;
         playField = (this.game.height - this.game.groundHeight);
-        gap = Math.floor((Math.random() * 45) + this.game.player.el.height()*4); //105
+        gap = Math.floor((Math.random() * 45) + 200); //105
     };
 
     Parallax.prototype.reset = function () {
@@ -51,7 +51,7 @@ window.Parallax = (function () {
             case 'TopPipe':
                 this.pos.x = this.game.width + 50;
                 this.width = pipeWidth;
-                this.height = Math.floor((Math.random() * (playField / 2) + 25));
+                this.height = Math.floor((Math.random() * (playField / 2)));
                 this.el.width(this.width);
                 this.el.height(this.height);
                 topHeight = this.height;
@@ -60,7 +60,7 @@ window.Parallax = (function () {
             case 'BottomPipe':
                 this.pos.x = this.game.width + 50;
                 this.width = pipeWidth;
-                this.height = (playField - topHeight - gap);
+                this.height = (playField - topHeight - 200);
                 this.el.width(this.width);
                 this.el.height(this.height);
                 this.el.css("bottom", this.game.groundHeight + 'px');
@@ -97,7 +97,7 @@ window.Parallax = (function () {
             case 'TopPipe':
                 if (pipeWidth + this.pos.x < 0) {
                     this.pos.x = this.game.width;
-                    this.height = Math.floor((Math.random() * (playField / 2) + 25));
+                    this.height = Math.floor((Math.random() * (playField / 2)));
                     topHeight = this.height;
                     this.el.height(this.height);
                 }
@@ -105,21 +105,29 @@ window.Parallax = (function () {
             case 'BottomPipe':
                 if (pipeWidth + this.pos.x < 0) {
                     this.pos.x = this.game.width;
-                    gap = Math.floor((Math.random() * 45) + 105);
+                    if(gap >100){
+                        gap = gap*0.99;
+                    } else{
+                        gap = Math.floor((Math.random() * 45) + 200); //105
+                    }
                     this.height = (playField - topHeight - gap);
                     this.el.height(this.height);
                 }
                 break;
             case 'Score':
                 this.el.text(this.game.score);
+                return;
                 break;
             case 'hiScore':
                 this.el.text("Best: " + this.game.hiScore);
+                return;
                 break;
             case 'currScore':
                 this.el.text("Score: " + this.game.score);
+                return;
                 break;
         }
+        this.speed = this.speed +=0.0001;
         this.el.css({"transform": "translate3d(" + this.pos.x +"px, 0px, 0px)"});
     }
     return Parallax;

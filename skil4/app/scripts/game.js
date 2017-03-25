@@ -18,8 +18,8 @@ window.Game = (function () {
         this.hiScore = 0;
         this.volume = 1;
         this.player = new window.Player(this.el.find('.Player'), this);
-        this.clouds = new window.Parallax(this.el.find('.Clouds'), this, 0.5, 'Cloud');
-        this.city = new window.Parallax(this.el.find('.City'), this, 0.2, 'City');
+        this.clouds = new window.Parallax(this.el.find('.Clouds'), this, this.baseSpeed*0.15625, 'Cloud');
+        this.city = new window.Parallax(this.el.find('.City'), this, this.baseSpeed*0.0625, 'City');
         this.ground = new window.Parallax(this.el.find('.Ground'), this, this.baseSpeed, 'Ground');
         this.scoreDisplay = new window.Parallax(this.el.find('.Score'), this, 0, 'Score');
         this.hiScoreDisplay = new window.Parallax(this.el.find('.hiScore'), this, 0, 'hiScore');
@@ -121,8 +121,11 @@ window.Game = (function () {
         this.topPipe.reset();
         this.bottomPipe.reset();
 
+
         // Should be refactored into a Scoreboard class.
         var scoreboardEl = this.el.find('.Scoreboard');
+        var trophy = this.el.find('.medal');
+        trophy.addClass(this.getTrophy());
         var that = this;
         scoreboardEl
             .addClass('is-visible')
@@ -132,6 +135,19 @@ window.Game = (function () {
                 that.start();
             });
     };
+
+    Game.prototype.getTrophy = function () {
+        if(this.score >= this.hiScore*0.9){
+            return 'goldTrophy';
+        }
+        if(this.score >= this.hiScore*0.7){
+            return 'silverTrophy';
+        }
+        if(this.score >= this.hiScore*0.5){
+            return 'bronzeTrophy';
+        }
+        return 'amatureTrophy';
+    }
 
     Game.prototype.mute = function () {
         if (this.volume == 1) {

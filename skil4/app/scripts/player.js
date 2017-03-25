@@ -66,6 +66,11 @@ window.Player = (function () {
             this.checkScore();
 
             // Update UI
+            if(this.velocity<=0){
+                this.el.addClass('moveBird');
+            }else {
+                this.el.removeClass('moveBird');
+            }
             this.el.css('transform', 'translate3d(0,' + this.pos.y + 'px, 0) rotate(' + this.velocity * 20 + 'deg)');
 
         };

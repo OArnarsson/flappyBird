@@ -25,3 +25,63 @@ $pipe-radius: 2px;
   0%{transform: translate3d(0, 0, 0);}
   100% {transform: translate3d(0, -85%, 0);}
 }
+
+@mixin gold{
+  .Trophy {
+    fill: gold;
+    stroke: black;
+  }
+  .TrophySecondary {
+    fill: goldenrod;
+    stroke: black;
+  }
+  .TrophyStand {
+    fill: darkgoldenrod;
+    stroke: black;
+  }
+}
+@mixin silver{
+  .Trophy {
+    fill: silver;
+    stroke: black;
+  }
+  .TrophySecondary {
+    fill: #8e8e8e;
+    stroke: black;
+  }
+  .TrophyStand {
+    fill: #8e8e8e;
+    stroke: black;
+  }
+}
+
+@mixin bronze{
+  .Trophy {
+    fill: #ab5208;
+    stroke: black;
+  }
+  .TrophySecondary {
+    fill: #4a2a02;
+    stroke: black;
+  }
+  .TrophyStand {
+    fill: #4a2a02;
+    stroke: black;
+  }
+}
+
+@mixin amature{
+  opacity: 0.4;
+  .Trophy {
+    fill: #fafff8;
+    stroke: black;
+  }
+  .TrophySecondary {
+    fill: #fafff8;
+    stroke: black;
+  }
+  .TrophyStand {
+    fill: #fafff8;
+    stroke: black;
+  }
+}

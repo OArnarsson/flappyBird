@@ -7,6 +7,17 @@
     left: 0;
     width: 50px;
     height: 50px;
-    background-image: url("../images/birdBig.png");
     background-size: contain;
+    background-image: url("../images/birdBigStable.png");
 }
+.moveBird{
+  animation: playerAnimation 0.3s linear infinite;
+}
+
+@keyframes playerAnimation {
+  0%  {background-image: url("../images/birdBigUp.png");}
+  33.33% {background-image: url("../images/birdBigStable.png");}
+  66.66% {background-image: url("../images/birdBigDown.png");}
+  99.99% {background-image: url("../images/birdBigStable.png");}
+}
+
