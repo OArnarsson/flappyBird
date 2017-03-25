@@ -6,26 +6,6 @@ $base-font-size: 10px;
 
 $pipe-radius: 2px;
 
-.sky{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 1500%; /* This must be in a factor of 5 */
-  background-image: linear-gradient(to top, rgba(30,152,209,1) 0%, rgb(202, 229, 243) 6.66%, rgba(125, 185, 232, 0.82) 13.33%,
-          rgb(240, 231, 26) 20%, rgb(245, 86, 12) 26.66%,   rgba(197, 127, 81, 0.82) 33.33%,
-          rgba(5, 5, 5, 1) 40%,  rgb(54, 55, 56) 46.66%,    rgb(3, 3, 3) 53.66%,
-          rgb(245, 86, 12) 60%, rgb(134, 210, 245) 66.66%,   rgba(30, 152, 209, 0.82) 73.33%,
-          rgba(30,152,209,1) 80%, rgb(30, 152, 209) 86.66%, rgba(30, 152, 209, 0.82) 100%);
-  animation: skyCicle 120s linear infinite;
-}
-
-
-@keyframes skyCicle {
-  0%{transform: translate3d(0, 0, 0);}
-  100% {transform: translate3d(0, -85%, 0);}
-}
-
 @mixin gold{
   .Trophy {
     fill: gold;
