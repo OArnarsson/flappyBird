@@ -129,7 +129,7 @@ window.Game = (function () {
         if (this.score > this.hiScore) {
             this.hiScore = this.score;
         }
-        localStorage.setItem("hiScore", "0");
+        localStorage.setItem("hiScore", this.hiScore);
         this.topPipe.reset();
         this.bottomPipe.reset();
 
