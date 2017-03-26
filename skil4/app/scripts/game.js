@@ -8,7 +8,7 @@ window.Game = (function () {
     newHiScore.preload = 'auto';
     newHiScore.volume = 0;
     newHiScore.loop = true;
-
+    var secretCode = [];
 
 
     /**
@@ -35,12 +35,14 @@ window.Game = (function () {
         this.currScore = new window.Parallax(this.el.find('.currScore'), this, 0, 'currScore');
         this.topPipe = new window.Parallax(this.el.find('.TopPipe'), this, this.baseSpeed, 'TopPipe');
         this.bottomPipe = new window.Parallax(this.el.find('.BottomPipe'), this, this.baseSpeed, 'BottomPipe');
+        this.playMode = "normal";
         this.isPlaying = false;
         this.muteButton = this.el.find('.Mute');
         this.muteButton.click(function () {
             that.mute()
         });
         var that = this;
+        this.easterEgg();
 
         // Cache a bound onFrame since we need it each frame.
         this.onFrame = this.onFrame.bind(this);
@@ -151,10 +153,14 @@ window.Game = (function () {
             .find('.Scoreboard-restart')
             .one('click', function () {
                 scoreboardEl.removeClass('is-visible');
+                that.resetEasterEgg();
                 that.start();
             });
-        if (this.getTrophy() === 'goldTrophy' && this.volume > 0) {
-            console.log('im here!');
+        this.playHighscore();
+    };
+
+    Game.prototype.playHighscore = function () {
+        if (this.getTrophy() === 'goldTrophy' && this.volume > 0 && this.hiScore >= 10) {
             $(bgSound).animate({volume: 0}, 1500);
             newHiScore.currentTime = 0;
             $(newHiScore).animate({volume: 1}, 1000);
@@ -168,7 +174,7 @@ window.Game = (function () {
                 }
             }, 15000);
         }
-    };
+    }
 
     Game.prototype.getTrophy = function () {
         console.log("score :" + this.score + ", hiscore :" + this.hiScore)
@@ -199,6 +205,33 @@ window.Game = (function () {
             this.muteButton.css('background', 'url(../images/volume.svg')
         }
         newHiScore.volume = 0;
+    }
+    Game.prototype.easterEgg = function () {
+        var that = this;
+        $(window).on('keydown', function (ev) {
+            secretCode.push(ev.keyCode);
+            if (ev.keyCode === 80) {
+                secretCode = [];
+            }
+            console.log("mode:"+that.playMode);
+            if (secretCode.length >= 6 && !that.isPlaying) {
+                if (secretCode[0] == 69 && secretCode[1] == 65 && secretCode[2] == 83 && secretCode[3] == 84 && secretCode[4] == 69 && secretCode[5] == 82) {
+                    console.log('EASTER TIME');
+                    that.playMode = 'easter';
+                    bgSound.pause();
+                    bgSound = new Audio('../sounds/erika.mp3');
+                    bgSound.play();
+                } else {
+                    secretCode = [];
+                }
+            }
+        });
+    }
+    Game.prototype.resetEasterEgg = function () {
+        if(this.playMode === 'normal'){
+            return;
+        }
+        this.playMode = 'easterTank';
     }
 
 

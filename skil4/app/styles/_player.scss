@@ -21,3 +21,29 @@
   99.99% {background-image: url("../images/birdBigStable.png");}
 }
 
+.easterBird{
+  animation: easterAnimation 1s linear infinite;
+  background-image: url("../images/easter/ebird1.png");
+}
+
+.easterTank{
+  width: 115px;
+  height: 115px;
+  animation: easterTank 1s linear infinite;
+  background-image: url("../images/easter/birdTank1.png");
+}
+
+@keyframes easterAnimation {
+  0%  {background-image: url("../images/easter/ebird1.png");}
+  33.33% {background-image: url("../images/easter/ebird2.png");}
+  66.66% {background-image: url("../images/easter/ebird3.png");}
+  99.99% {background-image: url("../images/easter/ebird2.png");}
+}
+
+@keyframes easterTank {
+  0%  {background-image: url("../images/easter/birdTank1.png");}
+  33.33% {background-image: url("../images/easter/birdTank2.png");}
+  66.66% {background-image: url("../images/easter/birdTank3.png");}
+  99.99% {background-image: url("../images/easter/birdTank2.png");}
+}
+

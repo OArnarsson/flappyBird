@@ -14,6 +14,7 @@ $(document).on("keypress", function (e) {
     }
     if (e.keyCode === 114) {
         if(!game.isPlaying) {
+            $('.SplashScreen').removeClass('is-visible');
             game.start();
         }
     }

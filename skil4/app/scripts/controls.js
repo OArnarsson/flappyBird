@@ -1,4 +1,3 @@
-
 window.Controls = (function () {
     'use strict';
 
@@ -13,10 +12,6 @@ window.Controls = (function () {
         40: 'down',
     };
 
-    //we use this for
-    document.ontouchmove = function(event){
-        event.preventDefault();
-    }
 
     /**
      * A singleton class which abstracts all player input,
@@ -27,14 +22,18 @@ window.Controls = (function () {
     var Controls = function () {
         this._didJump = false;
         this.keys = {};
-        var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
-        if(isSafari){
+        var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) {
+                return p.toString() === "[object SafariRemoteNotification]";
+            })(!window['safari'] || safari.pushNotification);
+        if (isSafari) {
+            //we need this for safari.
+            document.ontouchmove = function (event) {
+                event.preventDefault();
+            }
             $(window).on('touchstart', this._onClick.bind(this));
         } else {
-        $(window)
-            .on('keydown', this._onKeyDown.bind(this))
-            .on('keyup', this._onKeyUp.bind(this))
-            .on('click', this._onClick.bind(this));
+            $(window)
+                .on('click', this._onClick.bind(this));
         }
         // This is for iphone.
     };
