@@ -12,7 +12,7 @@ window.Parallax = ((() => {
             this.el = el;
             this.game = game;
             this.speed = speed;
-            this.pos = { x: 0};
+            this.pos = { x: 0 };
             this.name = name;
             this.width = 0;
             this.height = 0;
