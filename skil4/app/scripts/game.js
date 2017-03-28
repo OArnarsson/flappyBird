@@ -177,19 +177,15 @@ window.Game = (function () {
     }
 
     Game.prototype.getTrophy = function () {
-        console.log("score :" + this.score + ", hiscore :" + this.hiScore)
-        if (this.score >= this.hiScore * 0.9) {
+        if (this.score >= 10) {
             return 'goldTrophy';
         }
-        if (this.score >= this.hiScore * 0.66) {
-            console.log('im here2!!');
+        if (this.score >= 7) {
             return 'silverTrophy';
         }
-        if (this.score >= this.hiScore * 0.5) {
-            console.log('im here3!!');
+        if (this.score >= 3) {
             return 'bronzeTrophy';
         }
-        console.log('im here4!!');
         return 'amatureTrophy';
     }
 
