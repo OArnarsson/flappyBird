@@ -20,7 +20,10 @@ $(document).on("keypress", function (e) {
     }
 });
 
-$('.SplashScreen').find('.SplashScreen-start').click(function () {
+$('.SplashScreen').find('.SplashScreen-start').click(() => {
     $('.SplashScreen').removeClass('is-visible');
-    game.start();
+    console.log('main');
+    if (!game.isPlaying) {
+        game.start();
+    }
 });
