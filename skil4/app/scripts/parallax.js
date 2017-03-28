@@ -25,19 +25,21 @@ window.Parallax = (function () {
         switch (this.name) {
             case 'Cloud':
                 this.pos.x = 0;
-                this.pos.y = 0;
-                this.width = this.game.el.width()*2;
-                this.height = this.game.el.height();
-                this.el.width(this.width);
-                this.el.height(this.height);
+                this.pos.y = 0; // Taka  út
+                this.width = this.game.el.width()*2;  // færa í constructor
+                this.height = this.game.el.height(); // færa í constructor
+                this.el.width(this.width);  // færa í constructor
+                this.el.height(this.height); // færa í constructor
                 break;
             case 'City':
                 this.pos.x = 0;
                 this.pos.y = 0;
                 this.el.width(this.game.el.width()*2);
                 this.el.height(this.game.groundHeight*8);
+
                 this.width = (this.game.el.width());
                 this.height = this.game.groundHeight*8;
+
                 this.el.css("bottom", this.game.groundHeight + 'px');
                 break;
             case 'Ground':
@@ -45,6 +47,7 @@ window.Parallax = (function () {
                 this.pos.y = 0;
                 this.el.width(this.game.el.width()*2);
                 this.el.height(this.game.groundHeight+(this.game.groundHeight*0.3));
+
                 this.width = this.game.el.width();
                 this.height = this.game.groundHeight;
                 break;
@@ -55,6 +58,7 @@ window.Parallax = (function () {
                 this.el.width(this.width);
                 this.el.height(this.height);
                 topHeight = this.height;
+
                 this.el.css("top", 0);
                 break;
             case 'BottomPipe':
@@ -67,11 +71,14 @@ window.Parallax = (function () {
                 break;
             case 'hiScore':
                 var score = localStorage.getItem("hiScore") || 0;
+
                 this.game.hiScore = score;
                 this.el.text("Highscore: " + score);
+
                 break;
             case 'currScore':
                 this.el.text("Score: " + this.game.score);
+
                 break;
         }
     }

@@ -231,7 +231,15 @@ window.Game = (function () {
         if(this.playMode === 'normal'){
             return;
         }
+        this.player.el.removeClass('easterBird');
         this.playMode = 'easterTank';
+        var that = this;
+        setTimeout(function(){
+            that.score=0;
+            bgSound.currentTime = 0;
+            bgSound.play();
+            that.gameover();
+        }, 135000);
     }
 
 

@@ -11,7 +11,7 @@
     background-image: url("../images/birdBigStable.png");
 }
 .moveBird{
-  animation: playerAnimation 0.3s linear infinite;
+  animation: playerAnimation 0.5s linear infinite;
 }
 
 @keyframes playerAnimation {
