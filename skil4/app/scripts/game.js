@@ -17,24 +17,28 @@ window.Game = (function () {
      * @constructor
      */
     var Game = function (el) {
-        this.debug = false;
+        this.debug = true;
         this.baseSpeed = 3.2
         this.el = el;
         this.width = 0;
         this.height = 0;
+        this.groundHeight = 0;
         this.setGameSize();
         this.score = 0;
         this.hiScore = 0;
         this.volume = 1;
+
+
         this.player = new window.Player(this.el.find('.Player'), this);
-        this.clouds = new window.Parallax(this.el.find('.Clouds'), this, this.baseSpeed * 0.02083, 'Cloud');
-        this.city = new window.Parallax(this.el.find('.City'), this, this.baseSpeed * 0.0625, 'City');
-        this.ground = new window.Parallax(this.el.find('.Ground'), this, this.baseSpeed, 'Ground');
-        this.scoreDisplay = new window.Parallax(this.el.find('.Score'), this, 0, 'Score');
-        this.hiScoreDisplay = new window.Parallax(this.el.find('.hiScore'), this, 0, 'hiScore');
-        this.currScore = new window.Parallax(this.el.find('.currScore'), this, 0, 'currScore');
-        this.topPipe = new window.Parallax(this.el.find('.TopPipe'), this, this.baseSpeed, 'TopPipe');
-        this.bottomPipe = new window.Parallax(this.el.find('.BottomPipe'), this, this.baseSpeed, 'BottomPipe');
+        this.clouds = new window.Parallax(this.el.find('.Clouds'), this, this.baseSpeed * 0.02083, this.height, this.width*2);
+        this.city = new window.Parallax(this.el.find('.City'), this, this.baseSpeed * 0.0625, this.groundHeight * 8, this.width*2);
+        this.ground = new window.Parallax(this.el.find('.Ground'), this, this.baseSpeed, this.groundHeight * 1.3, this.width*2);
+        this.city.el.css("bottom", `${this.groundHeight}px`);
+        //this.scoreDisplay = new window.Parallax(this.el.find('.Score'), this, 0, 'Score');
+        //this.hiScoreDisplay = new window.Parallax(this.el.find('.hiScore'), this, 0, 'hiScore');
+        //this.currScore = new window.Parallax(this.el.find('.currScore'), this, 0, 'currScore');
+        //this.topPipe = new window.Parallax(this.el.find('.TopPipe'), this, this.baseSpeed, 'TopPipe');
+        //this.bottomPipe = new window.Parallax(this.el.find('.BottomPipe'), this, this.baseSpeed, 'BottomPipe');
         this.playMode = "normal";
         this.isPlaying = false;
         this.muteButton = this.el.find('.Mute');
@@ -89,11 +93,11 @@ window.Game = (function () {
         this.clouds.update();
         this.city.update();
         this.ground.update();
-        this.topPipe.update();
-        this.bottomPipe.update();
-        this.scoreDisplay.update();
-        this.hiScoreDisplay.update();
-        this.currScore.update();
+        //this.topPipe.update();
+        //this.bottomPipe.update();
+        //this.scoreDisplay.update();
+        //this.hiScoreDisplay.update();
+        //this.currScore.update();
 
         // Request next frame.
         window.requestAnimationFrame(this.onFrame);
@@ -117,8 +121,8 @@ window.Game = (function () {
      * Resets the state of the game so a new game can be started.
      */
     Game.prototype.reset = function () {
-        this.topPipe.reset();
-        this.bottomPipe.reset();
+        //this.topPipe.reset();
+        //this.bottomPipe.reset();
         this.player.reset();
         this.score = 0;
         var scoreboardEl = this.el.find('.Scoreboard');
@@ -134,8 +138,8 @@ window.Game = (function () {
             this.hiScore = this.score;
         }
         localStorage.setItem("hiScore", this.hiScore);
-        this.topPipe.reset();
-        this.bottomPipe.reset();
+        //this.topPipe.reset();
+        //this.bottomPipe.reset();
 
 
         // Should be refactored into a Scoreboard class.

@@ -61,7 +61,7 @@ window.Player = ((() => {
             if (!this.game.debug && this.game.playMode !== 'easterTank') {
                 this.checkCollision();
             }
-            this.checkScore();
+            //this.checkScore();
 
             // Update UI
             if (this.velocity <= 0) {
