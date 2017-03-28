@@ -13,7 +13,7 @@ $(document).on("keypress", function (e) {
         game.mute();
     }
     if (e.keyCode === 114) {
-        if(!game.isPlaying) {
+        if (!game.isPlaying) {
             $('.SplashScreen').removeClass('is-visible');
             game.start();
         }
