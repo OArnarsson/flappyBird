@@ -34,9 +34,9 @@ window.Game = (function () {
         this.city = new window.Parallax(this.el.find('.City'), this, this.baseSpeed * 0.0625, this.groundHeight * 8, this.width*2);
         this.ground = new window.Parallax(this.el.find('.Ground'), this, this.baseSpeed, this.groundHeight * 1.3, this.width*2);
         this.city.el.css("bottom", `${this.groundHeight}px`);
-        // this.scoreDisplay = new window.Parallax(this.el.find('.Score'), this, 0, 'Score');
-        // this.hiScoreDisplay = new window.Parallax(this.el.find('.hiScore'), this, 0, 'hiScore');
-        // this.currScore = new window.Parallax(this.el.find('.currScore'), this, 0, 'currScore');
+        this.scoreDisplay = new window.Score(this.el.find('.Score'), this, 'Score');
+        this.hiScoreDisplay = new window.Score(this.el.find('.hiScore'), this, 'hiScore');
+        this.currScore = new window.Score(this.el.find('.currScore'), this, 'currScore');
         this.topPipe = new window.Pipe(this.el.find('.TopPipe'), this, this.baseSpeed, this.width/5, 'TopPipe');
         this.bottomPipe = new window.Pipe(this.el.find('.BottomPipe'), this, this.baseSpeed, this.width/5, 'BottomPipe');
         this.playMode = "normal";
@@ -95,9 +95,9 @@ window.Game = (function () {
         this.ground.update();
         this.topPipe.update();
         this.bottomPipe.update();
-        //this.scoreDisplay.update();
-        //this.hiScoreDisplay.update();
-        //this.currScore.update();
+        this.scoreDisplay.update();
+        this.hiScoreDisplay.update();
+        this.currScore.update();
 
         // Request next frame.
         window.requestAnimationFrame(this.onFrame);
@@ -184,10 +184,10 @@ window.Game = (function () {
         if (this.score >= 10) {
             return 'goldTrophy';
         }
-        if (this.score >= 7) {
+        if (this.score >= 6) {
             return 'silverTrophy';
         }
-        if (this.score >= 3) {
+        if (this.score >= 2) {
             return 'bronzeTrophy';
         }
         return 'amatureTrophy';

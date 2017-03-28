@@ -61,7 +61,7 @@ window.Player = ((() => {
             if (!this.game.debug && this.game.playMode !== 'easterTank') {
                 this.checkCollision();
             }
-            //this.checkScore();
+            this.checkScore();
 
             // Update UI
             if (this.velocity <= 0) {
@@ -88,13 +88,13 @@ window.Player = ((() => {
 
         checkScore() {
             if (this.givingScore) {
-                if (this.game.topPipe.pos.x + this.game.topPipe.width <= this.game.width * INITIAL_POSITION_X) {
+                if (this.game.topPipe.pos.x + this.game.topPipe.el.width() <= this.game.width * INITIAL_POSITION_X) {
                     this.givingScore = false;
                     this.game.score += 1;
                 }
             }
 
-            if (this.game.topPipe.pos.x - this.game.topPipe.width > this.game.width * INITIAL_POSITION_X) {
+            if (this.game.topPipe.pos.x - this.game.topPipe.el.width() > this.game.width * INITIAL_POSITION_X) {
                 this.givingScore = true;
             }
         }
