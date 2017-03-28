@@ -161,15 +161,15 @@ window.Game = (function () {
 
     Game.prototype.playHighscore = function () {
         if (this.getTrophy() === 'goldTrophy' && this.volume > 0 && this.hiScore >= 10) {
-            $(bgSound).animate({volume: 0}, 1500);
+            $(bgSound).animate({ volume: 0 }, 1500);
             newHiScore.currentTime = 0;
-            $(newHiScore).animate({volume: 1}, 1000);
+            $(newHiScore).animate({ volume: 1 }, 1000);
             var that = this;
             setTimeout(function () {
-                $(newHiScore).animate({volume: 0}, 3000);
+                $(newHiScore).animate({ volume: 0 }, 3000);
                 if (that.volume > 0) {
                     setTimeout(function () {
-                        $(bgSound).animate({volume: 1}, 1500);
+                        $(bgSound).animate({ volume: 1 }, 1500);
                     }, 3000);
                 }
             }, 15000);
@@ -202,6 +202,7 @@ window.Game = (function () {
         }
         newHiScore.volume = 0;
     }
+
     Game.prototype.easterEgg = function () {
         var that = this;
         $(window).on('keydown', function (ev) {
@@ -209,7 +210,7 @@ window.Game = (function () {
             if (ev.keyCode === 80) {
                 secretCode = [];
             }
-            console.log("mode:"+that.playMode);
+            console.log("mode:" + that.playMode);
             if (secretCode.length >= 6 && !that.isPlaying) {
                 if (secretCode[0] == 69 && secretCode[1] == 65 && secretCode[2] == 83 && secretCode[3] == 84 && secretCode[4] == 69 && secretCode[5] == 82) {
                     console.log('EASTER TIME');
@@ -223,8 +224,9 @@ window.Game = (function () {
             }
         });
     }
+
     Game.prototype.resetEasterEgg = function () {
-        if(this.playMode === 'normal'){
+        if (this.playMode === 'normal') {
             return;
         }
         this.playMode = 'easterTank';

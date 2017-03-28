@@ -21,7 +21,7 @@ window.Player = (function () {
     var Player = function (el, game) {
         this.el = el;
         this.game = game;
-        this.pos = {x: INITIAL_POSITION_X, y: 0};
+        this.pos = { x: INITIAL_POSITION_X, y: 0 };
         this.gravity = 0.024; //0.024
         this.power = 0.85; //0.85
         if (this.game.debug) {
@@ -71,9 +71,9 @@ window.Player = (function () {
         } else {
             this.uiAnimation('down');
         }
-        if(this.game.playMode === 'easterTank'){
-            if(this.pos.y >= 0.434*this.game.height){
-                this.pos.y =  0.434*this.game.height;
+        if (this.game.playMode === 'easterTank') {
+            if (this.pos.y >= 0.434 * this.game.height) {
+                this.pos.y = 0.434 * this.game.height;
                 this.velocity = 0;
             }
         }

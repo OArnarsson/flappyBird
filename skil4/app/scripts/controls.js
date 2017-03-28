@@ -23,8 +23,8 @@ window.Controls = (function () {
         this._didJump = false;
         this.keys = {};
         var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) {
-                return p.toString() === "[object SafariRemoteNotification]";
-            })(!window['safari'] || safari.pushNotification);
+            return p.toString() === "[object SafariRemoteNotification]";
+        })(!window['safari'] || safari.pushNotification);
         if (isSafari) {
             //we need this for safari.
             document.ontouchmove = function (event) {
