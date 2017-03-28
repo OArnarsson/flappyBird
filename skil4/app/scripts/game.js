@@ -230,7 +230,6 @@ window.Game = (function () {
         this.playMode = 'easterTank';
     }
 
-
     return Game;
 })();
 
